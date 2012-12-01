@@ -9959,7 +9959,7 @@ Metric Code Size 5664</description>
 <instance part="U$5" gate="G$1" x="396.24" y="83.82"/>
 <instance part="R5" gate="G$1" x="370.84" y="91.44" rot="R90"/>
 <instance part="P+15" gate="G$1" x="426.72" y="58.42"/>
-<instance part="U$6" gate="G$1" x="-43.18" y="-25.4" rot="MR0"/>
+<instance part="U$6" gate="G$1" x="-40.64" y="-12.7" rot="MR0"/>
 </instances>
 <busses>
 <bus name="BARGRAPH[0..9]">
@@ -10298,6 +10298,11 @@ Metric Code Size 5664</description>
 <label x="416.56" y="81.28" size="1.778" layer="95"/>
 <pinref part="U$5" gate="G$1" pin="SCL2"/>
 </segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="SCL"/>
+<wire x1="-30.48" y1="33.02" x2="-41.91" y2="33.02" width="0.1524" layer="91"/>
+<label x="-39.37" y="33.02" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="SDA" class="0">
 <segment>
@@ -10319,6 +10324,11 @@ Metric Code Size 5664</description>
 <wire x1="411.48" y1="78.74" x2="421.64" y2="78.74" width="0.1524" layer="91"/>
 <label x="416.56" y="76.2" size="1.778" layer="95"/>
 <pinref part="U$5" gate="G$1" pin="SDA2"/>
+</segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="SDA"/>
+<wire x1="-30.48" y1="30.48" x2="-41.91" y2="30.48" width="0.1524" layer="91"/>
+<label x="-39.37" y="30.48" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="POT" class="0">
@@ -10805,22 +10815,12 @@ Metric Code Size 5664</description>
 </net>
 <net name="SCL1" class="0">
 <segment>
-<pinref part="U$3" gate="G$1" pin="SCL"/>
-<wire x1="-30.48" y1="33.02" x2="-41.91" y2="33.02" width="0.1524" layer="91"/>
-<label x="-39.37" y="33.02" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="U3" gate="G$1" pin="SCL@1"/>
 <wire x1="85.09" y1="58.42" x2="100.33" y2="58.42" width="0.1524" layer="91"/>
 <label x="88.9" y="58.42" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="SDA1" class="0">
-<segment>
-<pinref part="U$3" gate="G$1" pin="SDA"/>
-<wire x1="-30.48" y1="30.48" x2="-41.91" y2="30.48" width="0.1524" layer="91"/>
-<label x="-39.37" y="30.48" size="1.778" layer="95"/>
-</segment>
 <segment>
 <pinref part="U3" gate="G$1" pin="SDA@1"/>
 <wire x1="85.09" y1="55.88" x2="100.33" y2="55.88" width="0.1524" layer="91"/>
