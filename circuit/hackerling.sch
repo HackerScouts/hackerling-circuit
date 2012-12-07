@@ -9569,7 +9569,7 @@ Metric Code Size 5664</description>
 <part name="P+5" library="supply1" deviceset="VCC" device=""/>
 <part name="P+6" library="supply1" deviceset="VCC" device=""/>
 <part name="P+7" library="supply1" deviceset="VCC" device=""/>
-<part name="U$2" library="adafruit" deviceset="PNA460XM" device=""/>
+<part name="IR1" library="adafruit" deviceset="PNA460XM" device=""/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="P+8" library="supply1" deviceset="VCC" device=""/>
 <part name="U$3" library="hackerscouts" deviceset="ACCELEROMETER" device=""/>
@@ -9596,14 +9596,14 @@ Metric Code Size 5664</description>
 <part name="U1" library="hackerscouts" deviceset="MMA8452Q" device=""/>
 <part name="P+14" library="SparkFun" deviceset="3.3V" device=""/>
 <part name="U$4" library="SparkFun" deviceset="5V" device=""/>
-<part name="C5" library="resistor" deviceset="C-US" device="C0603K" value="0.1uF"/>
-<part name="C6" library="resistor" deviceset="C-US" device="C0603K" value="4.7uF"/>
+<part name="C2" library="resistor" deviceset="C-US" device="C0603K" value="0.1uF"/>
+<part name="C3" library="resistor" deviceset="C-US" device="C0603K" value="4.7uF"/>
 <part name="R4" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="4k7"/>
-<part name="U$5" library="hackerscouts" deviceset="PCA9306" device=""/>
+<part name="U5" library="hackerscouts" deviceset="PCA9306" device=""/>
 <part name="R5" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="200K"/>
 <part name="P+15" library="SparkFun" deviceset="3.3V" device=""/>
 <part name="U$6" library="hackerscouts" deviceset="ACCELEROMETER" device=""/>
-<part name="U$7" library="hackerscouts" deviceset="POT" device=""/>
+<part name="U7" library="hackerscouts" deviceset="POT" device=""/>
 <part name="P+16" library="supply1" deviceset="VCC" device=""/>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 <part name="H4" library="holes" deviceset="MOUNT-HOLE" device="2.8"/>
@@ -9611,7 +9611,7 @@ Metric Code Size 5664</description>
 <part name="B2" library="hackerscouts" deviceset="SWITCH_BCF-4000" device=""/>
 <part name="B3" library="hackerscouts" deviceset="SWITCH_BCF-4000" device=""/>
 <part name="B4" library="hackerscouts" deviceset="SWITCH_BCF-4000" device=""/>
-<part name="U$1" library="hackerscouts" deviceset="SWITCH_B13EH" device=""/>
+<part name="SW2" library="hackerscouts" deviceset="SWITCH_B13EH" device=""/>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="U$8" library="hackerscouts" deviceset="SML_POT" device=""/>
 <part name="P+17" library="supply1" deviceset="VCC" device=""/>
@@ -9665,7 +9665,7 @@ Metric Code Size 5664</description>
 <instance part="P+5" gate="VCC" x="144.78" y="12.7"/>
 <instance part="P+6" gate="VCC" x="129.54" y="71.12"/>
 <instance part="P+7" gate="VCC" x="190.5" y="86.36"/>
-<instance part="U$2" gate="G$1" x="-38.1" y="109.22"/>
+<instance part="IR1" gate="G$1" x="-38.1" y="109.22"/>
 <instance part="GND9" gate="1" x="-20.32" y="99.06"/>
 <instance part="P+8" gate="VCC" x="-10.16" y="106.68"/>
 <instance part="U$3" gate="G$1" x="-20.32" y="25.4" rot="MR0"/>
@@ -9692,14 +9692,14 @@ Metric Code Size 5664</description>
 <instance part="U1" gate="G$1" x="401.32" y="35.56"/>
 <instance part="P+14" gate="G$1" x="386.08" y="99.06"/>
 <instance part="U$4" gate="G$1" x="398.78" y="101.6"/>
-<instance part="C5" gate="G$1" x="381" y="35.56"/>
-<instance part="C6" gate="G$1" x="429.26" y="50.8"/>
+<instance part="C2" gate="G$1" x="381" y="35.56"/>
+<instance part="C3" gate="G$1" x="429.26" y="50.8"/>
 <instance part="R4" gate="G$1" x="447.04" y="43.18" rot="R90"/>
-<instance part="U$5" gate="G$1" x="396.24" y="83.82"/>
+<instance part="U5" gate="G$1" x="396.24" y="83.82"/>
 <instance part="R5" gate="G$1" x="370.84" y="91.44" rot="R90"/>
 <instance part="P+15" gate="G$1" x="426.72" y="58.42"/>
 <instance part="U$6" gate="G$1" x="-40.64" y="-12.7" rot="MR0"/>
-<instance part="U$7" gate="G$1" x="50.8" y="86.36"/>
+<instance part="U7" gate="G$1" x="50.8" y="86.36"/>
 <instance part="P+16" gate="VCC" x="-22.86" y="2.54"/>
 <instance part="GND17" gate="1" x="-50.8" y="-17.78" rot="MR0"/>
 <instance part="H4" gate="G$1" x="49.53" y="-76.2"/>
@@ -9707,7 +9707,7 @@ Metric Code Size 5664</description>
 <instance part="B2" gate="G$1" x="-104.14" y="15.24"/>
 <instance part="B3" gate="G$1" x="-91.44" y="15.24"/>
 <instance part="B4" gate="G$1" x="-78.74" y="15.24"/>
-<instance part="U$1" gate="G$1" x="-50.8" y="45.72"/>
+<instance part="SW2" gate="G$1" x="-63.5" y="45.72"/>
 <instance part="GND18" gate="1" x="-40.64" y="40.64" rot="MR0"/>
 <instance part="U$8" gate="G$1" x="180.34" y="68.58" rot="MR180"/>
 <instance part="P+17" gate="VCC" x="185.42" y="25.4"/>
@@ -9807,7 +9807,7 @@ Metric Code Size 5664</description>
 <segment>
 <pinref part="GND6" gate="1" pin="GND"/>
 <wire x1="60.96" y1="76.2" x2="60.96" y2="78.74" width="0.1524" layer="91"/>
-<pinref part="U$7" gate="G$1" pin="A"/>
+<pinref part="U7" gate="G$1" pin="A"/>
 <wire x1="60.96" y1="78.74" x2="50.8" y2="78.74" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -9843,7 +9843,7 @@ Metric Code Size 5664</description>
 <segment>
 <pinref part="GND9" gate="1" pin="GND"/>
 <wire x1="-20.32" y1="101.6" x2="-20.32" y2="109.22" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="GND"/>
+<pinref part="IR1" gate="G$1" pin="GND"/>
 <wire x1="-20.32" y1="109.22" x2="-27.94" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -9871,7 +9871,7 @@ Metric Code Size 5664</description>
 <segment>
 <wire x1="393.7" y1="22.86" x2="393.7" y2="25.4" width="0.1524" layer="91"/>
 <pinref part="GND13" gate="1" pin="GND"/>
-<pinref part="C5" gate="G$1" pin="2"/>
+<pinref part="C2" gate="G$1" pin="2"/>
 <wire x1="381" y1="30.48" x2="381" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="381" y1="25.4" x2="393.7" y2="25.4" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="GND@2"/>
@@ -9902,7 +9902,7 @@ Metric Code Size 5664</description>
 <pinref part="C1" gate="G$1" pin="2"/>
 </segment>
 <segment>
-<pinref part="C6" gate="G$1" pin="2"/>
+<pinref part="C3" gate="G$1" pin="2"/>
 <pinref part="GND16" gate="1" pin="GND"/>
 <wire x1="429.26" y1="45.72" x2="431.8" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="431.8" y1="45.72" x2="431.8" y2="43.18" width="0.1524" layer="91"/>
@@ -9910,7 +9910,7 @@ Metric Code Size 5664</description>
 <segment>
 <pinref part="GND12" gate="1" pin="GND"/>
 <wire x1="396.24" y1="63.5" x2="396.24" y2="68.58" width="0.1524" layer="91"/>
-<pinref part="U$5" gate="G$1" pin="GND"/>
+<pinref part="U5" gate="G$1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="U$6" gate="G$1" pin="GND"/>
@@ -9919,9 +9919,9 @@ Metric Code Size 5664</description>
 </segment>
 <segment>
 <pinref part="GND18" gate="1" pin="GND"/>
-<pinref part="U$1" gate="G$1" pin="3"/>
+<pinref part="SW2" gate="G$1" pin="3"/>
 <wire x1="-40.64" y1="43.18" x2="-40.64" y2="44.45" width="0.1524" layer="91"/>
-<wire x1="-40.64" y1="44.45" x2="-43.18" y2="44.45" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="44.45" x2="-55.88" y2="44.45" width="0.1524" layer="91"/>
 <junction x="-40.64" y="43.18"/>
 <pinref part="SW1" gate="A" pin="5"/>
 <wire x1="-22.86" y1="55.88" x2="-22.86" y2="60.96" width="0.1524" layer="91"/>
@@ -9958,7 +9958,7 @@ Metric Code Size 5664</description>
 <segment>
 <pinref part="P+3" gate="VCC" pin="VCC"/>
 <wire x1="60.96" y1="93.98" x2="60.96" y2="96.52" width="0.1524" layer="91"/>
-<pinref part="U$7" gate="G$1" pin="E"/>
+<pinref part="U7" gate="G$1" pin="E"/>
 <wire x1="60.96" y1="93.98" x2="50.8" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -9977,7 +9977,7 @@ Metric Code Size 5664</description>
 <wire x1="129.54" y1="66.04" x2="129.54" y2="68.58" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="VCC"/>
+<pinref part="IR1" gate="G$1" pin="VCC"/>
 <pinref part="P+8" gate="VCC" pin="VCC"/>
 <wire x1="-10.16" y1="104.14" x2="-27.94" y2="104.14" width="0.1524" layer="91"/>
 </segment>
@@ -10021,8 +10021,8 @@ Metric Code Size 5664</description>
 <wire x1="-22.86" y1="50.8" x2="-25.4" y2="50.8" width="0.1524" layer="91"/>
 <junction x="-25.4" y="50.8"/>
 <pinref part="P+11" gate="VCC" pin="VCC"/>
-<pinref part="U$1" gate="G$1" pin="1"/>
-<wire x1="-43.18" y1="46.99" x2="-43.18" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="SW2" gate="G$1" pin="1"/>
+<wire x1="-55.88" y1="46.99" x2="-43.18" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="-43.18" y1="48.26" x2="-25.4" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="SW1" gate="A" pin="8"/>
 <wire x1="-25.4" y1="48.26" x2="-22.86" y2="48.26" width="0.1524" layer="91"/>
@@ -10088,7 +10088,7 @@ Metric Code Size 5664</description>
 <segment>
 <wire x1="411.48" y1="81.28" x2="421.64" y2="81.28" width="0.1524" layer="91"/>
 <label x="416.56" y="81.28" size="1.778" layer="95"/>
-<pinref part="U$5" gate="G$1" pin="SCL2"/>
+<pinref part="U5" gate="G$1" pin="SCL2"/>
 </segment>
 <segment>
 <pinref part="U$3" gate="G$1" pin="SCL"/>
@@ -10115,7 +10115,7 @@ Metric Code Size 5664</description>
 <segment>
 <wire x1="411.48" y1="78.74" x2="421.64" y2="78.74" width="0.1524" layer="91"/>
 <label x="416.56" y="76.2" size="1.778" layer="95"/>
-<pinref part="U$5" gate="G$1" pin="SDA2"/>
+<pinref part="U5" gate="G$1" pin="SDA2"/>
 </segment>
 <segment>
 <pinref part="U$3" gate="G$1" pin="SDA"/>
@@ -10127,7 +10127,7 @@ Metric Code Size 5664</description>
 <segment>
 <wire x1="66.04" y1="86.36" x2="73.66" y2="86.36" width="0.1524" layer="91"/>
 <label x="68.58" y="86.36" size="1.778" layer="95"/>
-<pinref part="U$7" gate="G$1" pin="S"/>
+<pinref part="U7" gate="G$1" pin="S"/>
 <wire x1="55.88" y1="86.36" x2="58.42" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="58.42" y1="86.36" x2="58.42" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="58.42" y1="91.44" x2="66.04" y2="91.44" width="0.1524" layer="91"/>
@@ -10278,7 +10278,7 @@ Metric Code Size 5664</description>
 </net>
 <net name="IR_IN" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="OUT"/>
+<pinref part="IR1" gate="G$1" pin="OUT"/>
 <wire x1="-27.94" y1="114.3" x2="-15.24" y2="114.3" width="0.1524" layer="91"/>
 <label x="-25.4" y="114.3" size="1.778" layer="95"/>
 </segment>
@@ -10411,9 +10411,9 @@ Metric Code Size 5664</description>
 <net name="SWITCH" class="0">
 <segment>
 <label x="-78.74" y="48.26" size="1.778" layer="95"/>
-<pinref part="U$1" gate="G$1" pin="2"/>
+<pinref part="SW2" gate="G$1" pin="2"/>
 <wire x1="-71.12" y1="48.26" x2="-81.28" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="-53.34" y1="45.72" x2="-71.12" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="-66.04" y1="45.72" x2="-71.12" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="-71.12" y1="45.72" x2="-71.12" y2="48.26" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -10615,11 +10615,11 @@ Metric Code Size 5664</description>
 <segment>
 <pinref part="P+14" gate="G$1" pin="3.3V"/>
 <wire x1="386.08" y1="99.06" x2="393.7" y2="96.52" width="0.1524" layer="91"/>
-<pinref part="U$5" gate="G$1" pin="VCC1"/>
+<pinref part="U5" gate="G$1" pin="VCC1"/>
 <label x="388.62" y="99.06" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="C6" gate="G$1" pin="1"/>
+<pinref part="C3" gate="G$1" pin="1"/>
 <pinref part="U1" gate="G$1" pin="VDD"/>
 <wire x1="429.26" y1="53.34" x2="426.72" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="426.72" y1="53.34" x2="419.1" y2="53.34" width="0.1524" layer="91"/>
@@ -10642,7 +10642,7 @@ Metric Code Size 5664</description>
 </net>
 <net name="5V" class="0">
 <segment>
-<pinref part="U$5" gate="G$1" pin="VCC2"/>
+<pinref part="U5" gate="G$1" pin="VCC2"/>
 <wire x1="398.78" y1="96.52" x2="398.78" y2="101.6" width="0.1524" layer="91"/>
 <pinref part="U$4" gate="G$1" pin="5V"/>
 <junction x="398.78" y="101.6"/>
@@ -10658,7 +10658,7 @@ Metric Code Size 5664</description>
 <segment>
 <wire x1="381" y1="81.28" x2="370.84" y2="81.28" width="0.1524" layer="91"/>
 <label x="370.84" y="81.28" size="1.778" layer="95"/>
-<pinref part="U$5" gate="G$1" pin="SCL1"/>
+<pinref part="U5" gate="G$1" pin="SCL1"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="SCL"/>
@@ -10671,7 +10671,7 @@ Metric Code Size 5664</description>
 <segment>
 <wire x1="381" y1="78.74" x2="370.84" y2="78.74" width="0.1524" layer="91"/>
 <label x="370.84" y="78.74" size="1.778" layer="95"/>
-<pinref part="U$5" gate="G$1" pin="SDA1"/>
+<pinref part="U5" gate="G$1" pin="SDA1"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="SDA"/>
@@ -10696,13 +10696,13 @@ Metric Code Size 5664</description>
 <net name="N$25" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="BYP"/>
-<pinref part="C5" gate="G$1" pin="1"/>
+<pinref part="C2" gate="G$1" pin="1"/>
 <wire x1="383.54" y1="38.1" x2="381" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$27" class="0">
 <segment>
-<pinref part="U$5" gate="G$1" pin="EN"/>
+<pinref part="U5" gate="G$1" pin="EN"/>
 <pinref part="R5" gate="G$1" pin="1"/>
 <wire x1="381" y1="86.36" x2="370.84" y2="86.36" width="0.1524" layer="91"/>
 </segment>
