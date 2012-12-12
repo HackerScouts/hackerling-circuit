@@ -8769,25 +8769,31 @@ Metric Code Size 5664</description>
 <wire x1="-1.5" y1="-1.5" x2="-1.5" y2="-1.3" width="0.2032" layer="21"/>
 <wire x1="1.5" y1="-1.5" x2="0.8" y2="-1.5" width="0.2032" layer="21"/>
 <wire x1="1.5" y1="-1.5" x2="1.5" y2="-1.2916" width="0.2032" layer="21"/>
-<smd name="4" x="-1.35" y="1" dx="1" dy="0.295" layer="1"/>
+<smd name="1" x="-1.35" y="1" dx="1" dy="0.295" layer="1"/>
 <smd name="3" x="-1.35" y="0" dx="1" dy="0.295" layer="1"/>
-<smd name="2" x="-1.35" y="-0.5" dx="1" dy="0.295" layer="1"/>
-<smd name="1" x="-1.35" y="-1" dx="1" dy="0.295" layer="1"/>
-<smd name="5" x="-1.35" y="0.5" dx="1" dy="0.295" layer="1" rot="R180"/>
-<smd name="16" x="0" y="-1.35" dx="1" dy="0.295" layer="1" rot="R90"/>
-<smd name="15" x="0.5" y="-1.35" dx="1" dy="0.295" layer="1" rot="R90"/>
-<smd name="14" x="-0.5" y="-1.35" dx="1" dy="0.295" layer="1" rot="R90"/>
-<smd name="7" x="0" y="1.35" dx="1" dy="0.295" layer="1" rot="R270"/>
+<smd name="4" x="-1.35" y="-0.5" dx="1" dy="0.295" layer="1"/>
+<smd name="5" x="-1.35" y="-1" dx="1" dy="0.295" layer="1"/>
+<smd name="2" x="-1.35" y="0.5" dx="1" dy="0.295" layer="1" rot="R180"/>
+<smd name="7" x="0" y="-1.35" dx="1" dy="0.295" layer="1" rot="R90"/>
+<smd name="8" x="0.5" y="-1.35" dx="1" dy="0.295" layer="1" rot="R90"/>
+<smd name="6" x="-0.5" y="-1.35" dx="1" dy="0.295" layer="1" rot="R90"/>
+<smd name="15" x="0" y="1.35" dx="1" dy="0.295" layer="1" rot="R270"/>
 <text x="-1.95" y="2.6" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-2.0516" y="-3.1634" size="0.4064" layer="27">&gt;VALUE</text>
-<rectangle x1="-1.42" y1="-1.545" x2="-0.995" y2="-1.095" layer="21"/>
-<smd name="6" x="-0.5" y="1.35" dx="1" dy="0.295" layer="1" rot="R270"/>
-<smd name="8" x="0.5" y="1.35" dx="1" dy="0.295" layer="1" rot="R270"/>
+<smd name="16" x="-0.5" y="1.35" dx="1" dy="0.295" layer="1" rot="R270"/>
+<smd name="14" x="0.5" y="1.35" dx="1" dy="0.295" layer="1" rot="R270"/>
 <smd name="11" x="1.35" y="0" dx="1" dy="0.295" layer="1"/>
-<smd name="10" x="1.35" y="0.5" dx="1" dy="0.295" layer="1"/>
-<smd name="12" x="1.35" y="-0.5" dx="1" dy="0.295" layer="1"/>
-<smd name="13" x="1.35" y="-1" dx="1" dy="0.295" layer="1"/>
-<smd name="9" x="1.35" y="1" dx="1" dy="0.295" layer="1"/>
+<smd name="12" x="1.35" y="0.5" dx="1" dy="0.295" layer="1"/>
+<smd name="10" x="1.35" y="-0.5" dx="1" dy="0.295" layer="1"/>
+<smd name="9" x="1.35" y="-1" dx="1" dy="0.295" layer="1"/>
+<smd name="13" x="1.35" y="1" dx="1" dy="0.295" layer="1"/>
+<polygon width="0.127" layer="21">
+<vertex x="-1.66" y="1.31"/>
+<vertex x="-0.81" y="1.31"/>
+<vertex x="-0.81" y="1.56"/>
+<vertex x="-1.66" y="1.56"/>
+</polygon>
+<text x="-2.23" y="0.91" size="0.3048" layer="21">1</text>
 </package>
 <package name="VSSOP-8">
 <wire x1="1" y1="1.15" x2="1" y2="-1.15" width="0.127" layer="51"/>
@@ -8928,22 +8934,7 @@ Metric Code Size 5664</description>
 </package>
 <package name="SML_POT">
 <wire x1="3.6576" y1="3.302" x2="3.6576" y2="0.127" width="0.1524" layer="21"/>
-<wire x1="2.413" y1="-0.381" x2="1.016" y2="-0.381" width="0.1524" layer="51"/>
-<wire x1="4.064" y1="0" x2="2.54" y2="0" width="0.1524" layer="51"/>
-<wire x1="1.016" y1="0" x2="-1.016" y2="0" width="0.1524" layer="21"/>
-<wire x1="-2.794" y1="0" x2="-3.556" y2="0" width="0.1524" layer="21"/>
-<wire x1="-1.016" y1="0" x2="-2.54" y2="0" width="0.1524" layer="51"/>
-<wire x1="1.016" y1="-0.381" x2="-1.016" y2="-0.381" width="0.1524" layer="21"/>
-<wire x1="-1.016" y1="-0.381" x2="-2.413" y2="-0.381" width="0.1524" layer="51"/>
-<wire x1="2.413" y1="-0.381" x2="2.54" y2="-0.254" width="0.1524" layer="51"/>
-<wire x1="2.54" y1="-0.254" x2="2.54" y2="0" width="0.1524" layer="51"/>
-<wire x1="2.54" y1="0" x2="1.016" y2="0" width="0.1524" layer="51"/>
-<wire x1="-2.413" y1="-0.381" x2="-2.54" y2="-0.254" width="0.1524" layer="51"/>
-<wire x1="-2.54" y1="-0.254" x2="-2.54" y2="0" width="0.1524" layer="51"/>
-<wire x1="-2.54" y1="0" x2="-4.064" y2="0" width="0.1524" layer="51"/>
-<wire x1="-2.54" y1="-0.254" x2="-1.016" y2="-0.254" width="0.1524" layer="51"/>
-<wire x1="-1.016" y1="-0.254" x2="1.016" y2="-0.254" width="0.1524" layer="21"/>
-<wire x1="1.016" y1="-0.254" x2="2.54" y2="-0.254" width="0.1524" layer="51"/>
+<wire x1="1.016" y1="-0.3175" x2="-1.016" y2="-0.3175" width="0.1524" layer="21"/>
 <wire x1="-3.683" y1="3.429" x2="-3.683" y2="3.683" width="0.1524" layer="21"/>
 <wire x1="-3.556" y1="4.4958" x2="-3.683" y2="3.683" width="0.1524" layer="21"/>
 <wire x1="-3.556" y1="4.4958" x2="3.556" y2="4.4958" width="0.1524" layer="21"/>
@@ -8953,7 +8944,6 @@ Metric Code Size 5664</description>
 <wire x1="-3.556" y1="3.429" x2="-3.683" y2="3.429" width="0.1524" layer="21"/>
 <wire x1="3.683" y1="3.683" x2="-3.683" y2="3.683" width="0.1524" layer="21"/>
 <wire x1="3.6576" y1="0.127" x2="3.556" y2="0" width="0.1524" layer="21"/>
-<wire x1="3.556" y1="0" x2="4.064" y2="0" width="0.1524" layer="21"/>
 <wire x1="3.6576" y1="3.302" x2="3.556" y2="3.429" width="0.1524" layer="21"/>
 <wire x1="3.556" y1="3.429" x2="3.683" y2="3.429" width="0.1524" layer="21"/>
 <wire x1="-3.556" y1="3.429" x2="-3.6576" y2="3.302" width="0.1524" layer="21"/>
@@ -9833,12 +9823,33 @@ Metric Code Size 5664</description>
 <segment>
 <pinref part="IC2" gate="G$1" pin="GND"/>
 <pinref part="GND2" gate="1" pin="GND"/>
+<pinref part="IC2" gate="G$1" pin="A1"/>
+<wire x1="129.54" y1="-20.32" x2="121.92" y2="-20.32" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="-20.32" x2="121.92" y2="-22.86" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="G$1" pin="A2"/>
+<wire x1="129.54" y1="-22.86" x2="121.92" y2="-22.86" width="0.1524" layer="91"/>
+<junction x="121.92" y="-22.86"/>
+<wire x1="121.92" y1="-22.86" x2="121.92" y2="-33.02" width="0.1524" layer="91"/>
+<wire x1="121.92" y1="-33.02" x2="144.78" y2="-33.02" width="0.1524" layer="91"/>
+<junction x="144.78" y="-33.02"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="VSS"/>
 <pinref part="GND8" gate="1" pin="GND"/>
 <wire x1="132.08" y1="25.4" x2="127" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="127" y1="25.4" x2="127" y2="22.86" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="G$1" pin="A0"/>
+<wire x1="132.08" y1="35.56" x2="127" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="127" y1="35.56" x2="127" y2="33.02" width="0.1524" layer="91"/>
+<junction x="127" y="25.4"/>
+<pinref part="IC1" gate="G$1" pin="A1"/>
+<wire x1="127" y1="33.02" x2="127" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="127" y1="30.48" x2="127" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="33.02" x2="127" y2="33.02" width="0.1524" layer="91"/>
+<junction x="127" y="33.02"/>
+<pinref part="IC1" gate="G$1" pin="A2"/>
+<wire x1="132.08" y1="30.48" x2="127" y2="30.48" width="0.1524" layer="91"/>
+<junction x="127" y="30.48"/>
 </segment>
 <segment>
 <pinref part="GND9" gate="1" pin="GND"/>
@@ -9969,12 +9980,26 @@ Metric Code Size 5664</description>
 <segment>
 <pinref part="IC2" gate="G$1" pin="VCC"/>
 <pinref part="P+5" gate="VCC" pin="VCC"/>
+<pinref part="IC2" gate="G$1" pin="/RST"/>
+<wire x1="144.78" y1="10.16" x2="129.54" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="10.16" x2="129.54" y2="2.54" width="0.1524" layer="91"/>
+<junction x="144.78" y="10.16"/>
+<pinref part="IC2" gate="G$1" pin="A0"/>
+<wire x1="129.54" y1="2.54" x2="129.54" y2="0" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="-17.78" x2="114.3" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="-17.78" x2="114.3" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="114.3" y1="2.54" x2="129.54" y2="2.54" width="0.1524" layer="91"/>
+<junction x="129.54" y="2.54"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="VDD"/>
 <pinref part="P+6" gate="VCC" pin="VCC"/>
 <wire x1="132.08" y1="66.04" x2="129.54" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="129.54" y1="66.04" x2="129.54" y2="68.58" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="G$1" pin="!RESET"/>
+<wire x1="132.08" y1="60.96" x2="129.54" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="129.54" y1="60.96" x2="129.54" y2="66.04" width="0.1524" layer="91"/>
+<junction x="129.54" y="66.04"/>
 </segment>
 <segment>
 <pinref part="IR1" gate="G$1" pin="VCC"/>

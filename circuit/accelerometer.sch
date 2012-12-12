@@ -3778,25 +3778,31 @@ Metric Code Size 5664</description>
 <wire x1="-1.5" y1="-1.5" x2="-1.5" y2="-1.3" width="0.2032" layer="21"/>
 <wire x1="1.5" y1="-1.5" x2="0.8" y2="-1.5" width="0.2032" layer="21"/>
 <wire x1="1.5" y1="-1.5" x2="1.5" y2="-1.2916" width="0.2032" layer="21"/>
-<smd name="4" x="-1.4" y="1" dx="1.2" dy="0.32" layer="1"/>
-<smd name="3" x="-1.4" y="0" dx="1.2" dy="0.32" layer="1"/>
-<smd name="2" x="-1.4" y="-0.5" dx="1.2" dy="0.32" layer="1"/>
-<smd name="1" x="-1.4" y="-1" dx="1.2" dy="0.32" layer="1"/>
-<smd name="5" x="-1.4" y="0.5" dx="1.2" dy="0.32" layer="1" rot="R180"/>
-<smd name="16" x="0" y="-1.4" dx="1.2" dy="0.32" layer="1" rot="R90"/>
-<smd name="15" x="0.5" y="-1.4" dx="1.2" dy="0.32" layer="1" rot="R90"/>
-<smd name="14" x="-0.5" y="-1.4" dx="1.2" dy="0.32" layer="1" rot="R90"/>
-<smd name="7" x="0" y="1.4" dx="1.2" dy="0.32" layer="1" rot="R270"/>
+<smd name="1" x="-1.35" y="1" dx="1" dy="0.295" layer="1"/>
+<smd name="3" x="-1.35" y="0" dx="1" dy="0.295" layer="1"/>
+<smd name="4" x="-1.35" y="-0.5" dx="1" dy="0.295" layer="1"/>
+<smd name="5" x="-1.35" y="-1" dx="1" dy="0.295" layer="1"/>
+<smd name="2" x="-1.35" y="0.5" dx="1" dy="0.295" layer="1" rot="R180"/>
+<smd name="7" x="0" y="-1.35" dx="1" dy="0.295" layer="1" rot="R90"/>
+<smd name="8" x="0.5" y="-1.35" dx="1" dy="0.295" layer="1" rot="R90"/>
+<smd name="6" x="-0.5" y="-1.35" dx="1" dy="0.295" layer="1" rot="R90"/>
+<smd name="15" x="0" y="1.35" dx="1" dy="0.295" layer="1" rot="R270"/>
 <text x="-1.95" y="2.6" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-2.0516" y="-3.1634" size="0.4064" layer="27">&gt;VALUE</text>
-<rectangle x1="-1.42" y1="-1.545" x2="-0.995" y2="-1.095" layer="21"/>
-<smd name="6" x="-0.5" y="1.4" dx="1.2" dy="0.32" layer="1" rot="R270"/>
-<smd name="8" x="0.5" y="1.4" dx="1.2" dy="0.32" layer="1" rot="R270"/>
-<smd name="11" x="1.4" y="0" dx="1.2" dy="0.32" layer="1"/>
-<smd name="10" x="1.4" y="0.5" dx="1.2" dy="0.32" layer="1"/>
-<smd name="12" x="1.4" y="-0.5" dx="1.2" dy="0.32" layer="1"/>
-<smd name="13" x="1.4" y="-1" dx="1.2" dy="0.32" layer="1"/>
-<smd name="9" x="1.4" y="1" dx="1.2" dy="0.32" layer="1"/>
+<smd name="16" x="-0.5" y="1.35" dx="1" dy="0.295" layer="1" rot="R270"/>
+<smd name="14" x="0.5" y="1.35" dx="1" dy="0.295" layer="1" rot="R270"/>
+<smd name="11" x="1.35" y="0" dx="1" dy="0.295" layer="1"/>
+<smd name="12" x="1.35" y="0.5" dx="1" dy="0.295" layer="1"/>
+<smd name="10" x="1.35" y="-0.5" dx="1" dy="0.295" layer="1"/>
+<smd name="9" x="1.35" y="-1" dx="1" dy="0.295" layer="1"/>
+<smd name="13" x="1.35" y="1" dx="1" dy="0.295" layer="1"/>
+<polygon width="0.127" layer="21">
+<vertex x="-1.66" y="1.31"/>
+<vertex x="-0.81" y="1.31"/>
+<vertex x="-0.81" y="1.56"/>
+<vertex x="-1.66" y="1.56"/>
+</polygon>
+<text x="-2.23" y="0.91" size="0.3048" layer="21">1</text>
 </package>
 <package name="VSSOP-8">
 <wire x1="1" y1="1.15" x2="1" y2="-1.15" width="0.127" layer="51"/>
