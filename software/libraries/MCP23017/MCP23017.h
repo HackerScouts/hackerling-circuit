@@ -9,13 +9,15 @@
 
   Written by Limor Fried/Ladyada for Adafruit Industries.  
   BSD license, all text above must be included in any redistribution
+
+  Modified by Garratt Gallagher for use in Hacker Scouts
  ****************************************************/
 
-#ifndef _Adafruit_MCP23017_H_
-#define _Adafruit_MCP23017_H_
+#ifndef _MCP23017_H_
+#define _MCP23017_H_
 
 // Don't forget the Wire library
-class Adafruit_MCP23017 {
+class MCP23017 {
 public:
   void begin(uint8_t addr);
   void begin(void);
