@@ -57,7 +57,7 @@
 					</folderInfo>
 					<fileInfo id="cdt.managedbuild.toolchain.gnu.cross.base.883760292.1519037752" name="MCP23017.cpp" rcbsApplicability="disable" resourcePath="MCP23017/MCP23017.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.cpp.compiler.2067489050.1707315253">
 						<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.2067489050.1707315253" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.2067489050">
-							<option id="gnu.cpp.compiler.option.include.paths.571591641" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+							<option id="gnu.cpp.compiler.option.include.paths.571591641" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 								<listOptionValue builtIn="false" value="/usr/share/arduino/libraries/Wire"/>
 								<listOptionValue builtIn="false" value="/usr/lib/avr/include"/>
 								<listOptionValue builtIn="false" value="/usr/share/arduino/hardware/arduino/cores/arduino"/>

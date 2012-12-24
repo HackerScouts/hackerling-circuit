@@ -9,6 +9,8 @@
 
   Written by Limor Fried/Ladyada for Adafruit Industries.  
   BSD license, all text above must be included in any redistribution
+
+  Modified by Garratt Gallagher for use in Hacker Scouts
  ****************************************************/
 
 #include <Wire.h>
@@ -39,7 +41,7 @@ static inline uint8_t wirerecv(void) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-
+// set all pins to inputs
 void MCP23017::begin(uint8_t addr) {
   if (addr > 7) {
     addr = 7;
@@ -66,7 +68,13 @@ void MCP23017::begin(void) {
   begin(0);
 }
 
+
+
+//set the direction of one pin p, in the direction d (in=0, out=1)
 void MCP23017::pinMode(uint8_t p, uint8_t d) {
+	//TODO: this is inefficient if we want to set multiple pins.
+	//make a function to set all at once, or set a map of pins
+
   uint8_t iodir;
   uint8_t iodiraddr;
 
@@ -129,6 +137,7 @@ void MCP23017::writeGPIOAB(uint16_t ba) {
   Wire.endTransmission();
 }
 
+//write one pin, p with data d
 void MCP23017::digitalWrite(uint8_t p, uint8_t d) {
   uint8_t gpio;
   uint8_t gpioaddr, olataddr;
