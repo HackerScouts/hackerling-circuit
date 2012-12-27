@@ -100,7 +100,7 @@ void MCP23008::pinMode(uint8_t p, uint8_t d) {
   Wire.endTransmission();
 }
 
-uint8_t MCP23008::readGPIOA() {
+uint8_t MCP23008::readGPIO() {
 
   uint8_t a;
   // read the current GPIO output latches
@@ -114,9 +114,9 @@ uint8_t MCP23008::readGPIOA() {
   return a;
 }
 
-void MCP23008::writeGPIOA(uint8_t a) {
+void MCP23008::writeGPIO(uint8_t a) {
   Wire.beginTransmission(MCP23008_ADDRESS | i2caddr);
-  wiresend(MCP23008_GPIOA);
+  wiresend(MCP23008_GPIO);
   wiresend(a);
   Wire.endTransmission();
 }

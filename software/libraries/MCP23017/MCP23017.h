@@ -28,6 +28,7 @@ public:
   uint8_t digitalRead(uint8_t p);
 
   void writeGPIOAB(uint16_t);
+  void writeGPIOB(uint8_t b);
   uint16_t readGPIOAB();
 
  private:

@@ -137,6 +137,13 @@ void MCP23017::writeGPIOAB(uint16_t ba) {
   Wire.endTransmission();
 }
 
+void MCP23017::writeGPIOB(uint8_t b) {
+  Wire.beginTransmission(MCP23017_ADDRESS | i2caddr);
+  wiresend(MCP23017_GPIOB);
+  wiresend(b);
+  Wire.endTransmission();
+}
+
 //write one pin, p with data d
 void MCP23017::digitalWrite(uint8_t p, uint8_t d) {
   uint8_t gpio;

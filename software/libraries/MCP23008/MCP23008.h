@@ -27,8 +27,8 @@ public:
   void pullUp(uint8_t p, uint8_t d);
   uint8_t digitalRead(uint8_t p);
 
-  void writeGPIOAB(uint16_t);
-  uint16_t readGPIOAB();
+  void writeGPIO(uint8_t);
+  uint8_t readGPIO();
 
  private:
   uint8_t i2caddr;

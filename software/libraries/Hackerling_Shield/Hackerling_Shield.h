@@ -33,7 +33,7 @@
 //GPB6 - LCD_DB6
 //GPB7 - LCD_DB7
 
-//MCP2308 - 8 bit io mapper:
+//MCP23008 - 8 bit io mapper:
 //GPA0 - Bargraph0
 //GPA1 - Bargraph1
 //GPA2 - Bargraph2
@@ -42,5 +42,9 @@
 //GPA5 - DIP1
 //GPA6 - DIP2
 //GPA7 - DIP3
-
+#define BARGRAPH0 0
+#define BARGRAPH1 1
+#define BARGRAPH2 2
+#define BARGRAPH3 3
+#define BARGRAPH4 4
 #endif /* HACKERLING_SHIELD_H_ */
