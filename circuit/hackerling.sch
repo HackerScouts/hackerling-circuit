@@ -16396,6 +16396,23 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="-82.55" y1="3.81" x2="-82.55" y2="1.27" width="0.1524" layer="91"/>
 <wire x1="-82.55" y1="1.27" x2="-92.71" y2="1.27" width="0.1524" layer="91"/>
 <junction x="-92.71" y="1.27"/>
+<wire x1="-92.71" y1="1.27" x2="-104.14" y2="1.27" width="0.1524" layer="91"/>
+<pinref part="B1" gate="G$1" pin="S1"/>
+<wire x1="-104.14" y1="1.27" x2="-104.14" y2="3.81" width="0.1524" layer="91"/>
+<wire x1="-104.14" y1="3.81" x2="-105.41" y2="3.81" width="0.1524" layer="91"/>
+<wire x1="-82.55" y1="1.27" x2="-80.01" y2="1.27" width="0.1524" layer="91"/>
+<junction x="-82.55" y="1.27"/>
+<pinref part="B4" gate="G$1" pin="S"/>
+<wire x1="-80.01" y1="1.27" x2="-71.12" y2="1.27" width="0.1524" layer="91"/>
+<wire x1="-71.12" y1="1.27" x2="-71.12" y2="3.81" width="0.1524" layer="91"/>
+<wire x1="-71.12" y1="3.81" x2="-69.85" y2="3.81" width="0.1524" layer="91"/>
+<pinref part="B3" gate="G$1" pin="S1"/>
+<wire x1="-80.01" y1="3.81" x2="-80.01" y2="1.27" width="0.1524" layer="91"/>
+<junction x="-80.01" y="1.27"/>
+<pinref part="B4" gate="G$1" pin="S1"/>
+<wire x1="-67.31" y1="3.81" x2="-67.31" y2="1.27" width="0.1524" layer="91"/>
+<wire x1="-67.31" y1="1.27" x2="-71.12" y2="1.27" width="0.1524" layer="91"/>
+<junction x="-71.12" y="1.27"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -16841,11 +16858,6 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <pinref part="B3" gate="G$1" pin="P1"/>
 <wire x1="-80.01" y1="15.24" x2="-80.01" y2="13.97" width="0.1524" layer="91"/>
 </segment>
-<segment>
-<wire x1="24.13" y1="55.88" x2="10.16" y2="55.88" width="0.1524" layer="91"/>
-<label x="13.97" y="55.88" size="1.778" layer="95"/>
-<pinref part="U3" gate="G$1" pin="D0"/>
-</segment>
 </net>
 <net name="BTN4" class="0">
 <segment>
@@ -16853,11 +16865,6 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="-67.31" y1="19.05" x2="-59.69" y2="19.05" width="0.1524" layer="91"/>
 <label x="-67.31" y="21.59" size="1.778" layer="95" rot="MR180"/>
 <pinref part="B4" gate="G$1" pin="P1"/>
-</segment>
-<segment>
-<wire x1="24.13" y1="53.34" x2="12.7" y2="53.34" width="0.1524" layer="91"/>
-<label x="13.97" y="53.34" size="1.778" layer="95"/>
-<pinref part="U3" gate="G$1" pin="D1"/>
 </segment>
 </net>
 <net name="SWITCH" class="0">
@@ -17007,9 +17014,13 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </net>
 <net name="IR_OUT1" class="0">
 <segment>
-<pinref part="U3" gate="G$1" pin="D5"/>
-<wire x1="24.13" y1="43.18" x2="13.97" y2="43.18" width="0.1524" layer="91"/>
-<label x="15.24" y="43.18" size="1.778" layer="95"/>
+<wire x1="19.05" y1="44.45" x2="19.05" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="19.05" y1="43.18" x2="3.81" y2="43.18" width="0.1524" layer="91"/>
+<label x="3.81" y="43.18" size="1.778" layer="95"/>
+<wire x1="19.05" y1="44.45" x2="21.59" y2="44.45" width="0.1524" layer="91"/>
+<wire x1="21.59" y1="44.45" x2="21.59" y2="40.64" width="0.1524" layer="91"/>
+<pinref part="U3" gate="G$1" pin="D6"/>
+<wire x1="21.59" y1="40.64" x2="24.13" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="LED1" gate="G$1" pin="C"/>
@@ -17024,9 +17035,12 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </net>
 <net name="IR_OUT2" class="0">
 <segment>
-<pinref part="U3" gate="G$1" pin="D6"/>
-<wire x1="24.13" y1="40.64" x2="13.97" y2="40.64" width="0.1524" layer="91"/>
-<label x="15.24" y="40.64" size="1.778" layer="95"/>
+<wire x1="24.13" y1="41.91" x2="19.05" y2="41.91" width="0.1524" layer="91"/>
+<wire x1="19.05" y1="41.91" x2="19.05" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="19.05" y1="40.64" x2="3.81" y2="40.64" width="0.1524" layer="91"/>
+<label x="3.81" y="40.64" size="1.778" layer="95"/>
+<pinref part="U3" gate="G$1" pin="D5"/>
+<wire x1="24.13" y1="41.91" x2="24.13" y2="43.18" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="54.61" y1="111.76" x2="54.61" y2="104.14" width="0.1524" layer="91"/>
