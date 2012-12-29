@@ -1,0 +1,59 @@
+How to panelize:
+
+
+
+Installation:
+-----------------------------
+1) Get Prereqs
+  sudo apt-get install python-dev python-setuptools build-essential bzr
+2) Get SimpleParse, test it:
+  bzr branch lp:simpleparse
+  cd simpleparse
+  python setup.py build_ext --inplace --force
+  sudo python setup.py install
+  cd tests
+  python test.py
+3) Get Gerbmerge:
+  wget http://ruggedcircuits.com/gerbmerge/gerbmerge-1.8.tar.gz
+  tar zxf gerbmerge-1.8.tar.gz
+  cd gerbmerge-1.8
+4) Edit setup.py
+  change the line from:
+  DestLib = distutils.sysconfig.get_config_var('LIBPYTHON')
+  to:
+  DestLib = '/usr/local/lib/python2.7/'
+4) Install Gerbmerge
+  sudo python setup.py install
+5) add softlinks
+  cd /usr/local/lib/python2.7/site-packages
+  sudo ln -s ../dist-packages/gerbmerge
+  cd /usr/lib/python2.7
+  sudo ln -s /usr/local/lib/python2.7/site-packages
+
+
+USE:
+----------------------------
+1) Run Cam job: sfe-gerb274x.cam  in the libs dir.  It generates an extra .bor file.
+2) Copy cam files to panelize directory
+3) Edit the input and output file names in panel.cfg (currently hackerling;Hackerlingv1_0)
+4) Edit the panel.layout to specify the number of panels you want
+5) in the panelize directory, run gerbmerge:
+  gerbmerge panel.cfg panel.layout
+
+
+
+Notes:
+------------------------------
+gerbmerge seems to change the text a bit.  look into why that happens.
+
+
+
+
+
+
+
+
+References:
+---------------------------
+http://www.instructables.com/id/Panelizing-PCBs-for-Seeed-Using-Eagle-Free-Light/?ALLSTEPS
+http://blog.bhargavaz.us/2009/05/installing-gerbmerge-on-ubuntu-linux.html
