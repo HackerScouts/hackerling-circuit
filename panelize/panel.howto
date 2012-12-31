@@ -45,6 +45,7 @@ USE:
 Notes:
 ------------------------------
 gerbmerge seems to change the text a bit.  look into why that happens.
+  - this happens due to the MinimumFeatureSize setting.  I turned it off, but it may be helpful to set it to manufacturer settings.
 
 
 
