@@ -47,4 +47,47 @@
 #define BARGRAPH2 2
 #define BARGRAPH3 3
 #define BARGRAPH4 4
+
+
+class Hackerling_Shield{
+private:
+	//MCP23017 class - use directly only for installation tests
+	//MCP23008 class - use directly only for installation tests
+
+
+public:
+	//Bargraph class for controlling leds, behaviors
+	//IR Comm class
+	// - receiver can receive raw data, like from a tv remote
+	//   transmitter can send raw data, like tv remote
+	//   can be set up to send data to other boards
+	//Pot class
+	//Buttons class
+	//dipswitch class
+	//servo class
+	//speaker class - depends on tone class
+	//analog IO class
+	//thermistor class
+	//LCD class
+
+
+
+
+
+
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endif /* HACKERLING_SHIELD_H_ */
