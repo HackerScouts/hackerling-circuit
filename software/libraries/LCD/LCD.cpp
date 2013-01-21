@@ -52,9 +52,14 @@ LCD::LCD() {
   _displayfunction = LCD_4BITMODE | LCD_1LINE | LCD_5x8DOTS;
   
   // the I/O expander pinout
-  _rs_pin = 7;
-  _rw_pin = 6;
-  _enable_pin = 5;
+//v1.0:
+//  _rs_pin = 7;
+//  _rw_pin = 6;
+//  _enable_pin = 5;
+//v1.1
+  _rs_pin = 9;
+  _rw_pin = 10;
+  _enable_pin = 11;
   _data_pins[0] = 12;  // really d4
   _data_pins[1] = 13;  // really d5
   _data_pins[2] = 14;  // really d6

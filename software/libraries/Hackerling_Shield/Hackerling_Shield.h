@@ -8,6 +8,11 @@
 #ifndef HACKERLING_SHIELD_H_
 #define HACKERLING_SHIELD_H_
 //Here is all the pin mapping for the hackerling shield:
+#include <avr/io.h>
+#include <MCP23017.h>
+#include <MCP23008.h>
+
+#define INPUT 0
 
 //MCP23017 - 16 bit io mapper:
 //GPA0 - Bargraph5
@@ -48,12 +53,94 @@
 #define BARGRAPH3 3
 #define BARGRAPH4 4
 
+		//Button 1 - Left - GPB0
+		//Button 2 - Up - GPA6
+		//Button 3 - Right - GPA5
+		//Button 4 - Down - GPA7
+#define BUTTON_LEFT  0x01
+#define BUTTON_UP    0x02
+#define BUTTON_RIGHT 0x04
+#define BUTTON_DOWN  0x08
+
+//The values to set the compare match to get specific tones.
+//To change octave, we just change prescale
+#define NOTE_B 253
+#define NOTE_C 239
+#define NOTE_Cs 225
+#define NOTE_D 213
+#define NOTE_Ds 201
+#define NOTE_E 190
+#define NOTE_F 179
+#define NOTE_Fs 169
+#define NOTE_G 159
+#define NOTE_Gs 150
+#define NOTE_A 142
+#define NOTE_As 134
+#define NOTE_Balt 127
+
+//uses timer 2
+class Speaker{
+public:
+	void turnOn(){
+		TCCR2A &= 0xbf;
+		TCCR2A |= 0x40;
+	}
+	void turnOff(){
+		TCCR2A &= 0x3f;
+	}
+	void setOctave(uint8_t octave){
+		//octaves that work well:
+		//Octave 1: 123Hz to 233Hz - prescale 256 - 110
+		//Octave 2: 246Hz to 466Hz - prescale 128 - 101
+		//Octave 3: 493Hz to 932Hz - prescale 64 - 100
+		//Octave 4: 987Hz to 1864Hz - prescale 32 - 011
+		TCCR2B = (octave ^ 0x07) & 0x07; //just flip the bits!
+		//note this assumes that we will always use ctc mode (decent assumption for this library)
+		// also, if someone enters 7, it will stop the clock.
+	}
+	void setNote(uint8_t n){
+		OCR2A=n;
+	}
+	void playNote(uint8_t n,uint16_t dur);
+
+	void begin(){
+		//initialize pins:
+		DDRB |= 0x08;
+
+		//start oscillator
+		//TCCR2A
+		// 0000xxxx - initially, do not toggle outputs on compare match
+		// xxxx00xx - reserved
+		// xxxxxx10 - CTC mode
+		TCCR2A = 0x02;
+
+		//TCCR2B
+		// 00xxxxxx - Force output compare (don't)
+		// xx00xxxx - reserved
+		// xxxx0xxx - CTC mode
+		// xxxxx011 - prescale at 32
+//		TCCR2B = 0x03;
+		setOctave(2);
+//		set to play a C
+		OCR2A = NOTE_C;
+
+
+		//TIMSK0 - xxxxx010 - enable Compare match A interrupt
+//		TIMSK0 = 0x02;
+	}
+
+};
+
+
+
 
 class Hackerling_Shield{
 private:
 	//MCP23017 class - use directly only for installation tests
+	MCP23017 mcp23017;
 	//MCP23008 class - use directly only for installation tests
-
+	MCP23008 mcp23008;
+	uint16_t hs_button_masks[4];//the button mapping into the MCP23017 pins
 
 public:
 	//Bargraph class for controlling leds, behaviors
@@ -69,8 +156,39 @@ public:
 	//analog IO class
 	//thermistor class
 	//LCD class
+	Speaker speaker;
+
+	//analog stuff:
+	uint16_t analog_channels; //select which channels we will be reading
+	uint8_t analog_values[9];//whenever a channel is read, put data in the appropriate bin.
 
 
+	//button functions:
+	void initButtons();
+	//give back the Buttons that are activated
+	uint8_t readButtons();
+
+	//Switch functions:
+	void initSwitches();
+
+	void initBarGraph();
+
+	void setBarGraph(uint16_t bgstate);
+
+	//give back the Switches that are activated
+	uint8_t readSwitches();
+
+
+	//analog functions:
+	void initAnalog();
+
+	//this function should be called by the ADC conversion complete interrupt
+	void analogReadCallback();
+
+	uint8_t getPotValue();
+	uint8_t getThermistorValue();
+	uint8_t getInternalTempValue();
+	void begin();
 
 
 
@@ -79,6 +197,8 @@ public:
 };
 
 
+
+extern Hackerling_Shield hs;
 
 
 
