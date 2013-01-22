@@ -118,9 +118,9 @@ void LCD::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
     Wire.begin();
     _i2c.begin();
 
-    _i2c.pinMode(8, OUTPUT);
-    _i2c.pinMode(6, OUTPUT);
-    _i2c.pinMode(7, OUTPUT);
+ //   _i2c.pinMode(8, OUTPUT);
+ //   _i2c.pinMode(6, OUTPUT);
+ //   _i2c.pinMode(7, OUTPUT);
 //    setBacklight(0x7);
 
     if (_rw_pin)
