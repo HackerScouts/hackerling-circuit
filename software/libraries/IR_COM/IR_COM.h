@@ -8,6 +8,7 @@
 #ifndef IR_COM_H_
 #define IR_COM_H_
 
+#include <avr/io.h>
 #define IR_TX_QUEUESIZE 10
 //the length of each bit, in 38Khz periods.
 //the period for 38Khz is ~26.3us, and the min period for the receiver to register is 200us
@@ -15,6 +16,22 @@
 #define IR_BITLENGTH 37
 #define IR_TX_BITLENGTH0 45 //low length
 #define IR_TX_BITLENGTH1 30 //high length
+
+#define IR_TX_HIGHLEN 40 //width of on part of signal in interrupt counts (twice per wavelength)
+#define IR_TX_LOWLEN0 47 //width of off segment used to express 0 bit in interrupt counts (twice per wavelength)
+#define IR_TX_LOWLEN1 124 //width of off segment used to express 1 bit in interrupt counts (twice per wavelength)
+#define IR_TX_STARTLEN 600 //width of start segment (off) in interrupt counts (twice per wavelength)
+#define IR_TX_POSTSTARTLEN 350 //width of on segment before off start segment in interrupt counts (twice per wavelength)
+
+#define IR_TX_OFF   0x20    //for phy layer bookkeeping
+#define IR_TX_START 0x01
+#define IR_TX_0BIT  0x02
+#define IR_TX_1BIT  0x04
+#define IR_TX_END   0x08
+#define IR_TX_POSTSTART 0x10 //for phy layer bookkeeping
+#define IR_TX_HIGH 0x20 //for phy layer bookkeeping
+
+
 //
 //signal(timer0_compare){ //or whatever this is
 //	//call tx  deal:
@@ -79,7 +96,7 @@ public: //for debug
 	uint8_t rxbytepos; //position in byte
 	uint8_t rxstate; //whether the incoming bit is are high or low (must be 1 or 0)
 	uint8_t rxbyte; //currently incoming data
-	Circular_Buffer *buffer;
+	Circular_Buffer buffer;
 	int errors;
 
 	void addBit();  //called by the rxCallback, which gets data 1 bit at a time
@@ -90,7 +107,6 @@ public: //for debug
 		int values[20];
 
 
-	IR_Receiver(Circular_Buffer *b);
 	//called at 38Khz.  Sample the incoming signal.
 	//pass in the state of the receiver.  assumes normal encoding, and that the transmitter has the same bitlength
 	void rxCallback(uint8_t sig);
@@ -102,18 +118,17 @@ public: //for debug
 //This class takes care of the physical layer
 //as well as the software checksum layer
 class IR_Transmitter {
-	Circular_Buffer *buffer;
 	uint8_t bitpos; //counts up to indicate width of bit (phy layer)
 	uint8_t bytepos;  //position in the byte
 	uint8_t txbyte;  //byte we are currently transmitting
 	uint8_t txcomplete; //done transmitting
 	uint8_t bitlength; //width of current bit (high is longer than low)
 public:
+	Circular_Buffer buffer;
 	//called at 38Khz. returns the level at which to set the transmitter
 	//return: 0 - low; 1->high; 2-> whatever we did before, 3-> off
 	uint8_t txCallback();
 	void flush();
-	IR_Transmitter(Circular_Buffer *b){ buffer=b;}
 	void begin(); //setup LEDs and receiver
 
 };
@@ -126,15 +141,16 @@ public:
 //Main IR communications class.  Use this to do communication
 class IR_COM{
 public: //for debug
-	Circular_Buffer rxbuffer, txbuffer;
+	//Circular_Buffer rxbuffer, txbuffer;
 	IR_Transmitter tx;
 	IR_Receiver rx;
 	uint16_t callcount;
+	uint8_t txstate;
+	uint16_t txcount;
 
 	//control the toggling of the output pins
 	void setOutput(uint8_t flag);
 //public:
-	IR_COM();
 	void begin();
 
 	//called at 38Khz x2
@@ -152,6 +168,7 @@ public: //for debug
 	int getTrans(){ return rx.transitions;}
 };
 
+extern IR_COM IR;
 
-
+//extern IR_COM *global_IR_;
 #endif /* IR_COM_H_ */

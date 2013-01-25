@@ -48,7 +48,7 @@ void setup() {
 //    iomap.digitalWrite(BARGRAPH8,1);
 //    iomap.digitalWrite(BARGRAPH9,1);
 
-        DDRD  |= 0x04;
+  //      DDRD  |= 0x04;
 }
 
         Circular_Buffer circ;
