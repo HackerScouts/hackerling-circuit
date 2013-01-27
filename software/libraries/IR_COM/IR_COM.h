@@ -89,31 +89,76 @@ public:
 #define RX_BIT_ERROR 0x01
 //this class handles receiver physical layer.
 //it must sync to the bits coming in, as well as validate that a correct byte has been processed
+//class IR_Receiver{
+//public: //for debug
+//	uint8_t tracking;
+//	uint8_t rxbitpos; //position in bit
+//	uint8_t rxbytepos; //position in byte
+//	uint8_t rxstate; //whether the incoming bit is are high or low (must be 1 or 0)
+//	uint8_t rxbyte; //currently incoming data
+//	Circular_Buffer buffer;
+//	int errors;
+//
+//	void addBit();  //called by the rxCallback, which gets data 1 bit at a time
+////public:
+//	//	debug:
+//		int transitions;
+//		int lengths[20];
+//		int values[20];
+//
+//
+//	//called at 38Khz.  Sample the incoming signal.
+//	//pass in the state of the receiver.  assumes normal encoding, and that the transmitter has the same bitlength
+//	void rxCallback(uint8_t sig);
+//	//initialize, start looking for a signal
+//	void begin();
+//	void flush();
+//};
+
+
+#define IR_HIGH_LENGTH 80  // ~1000 us - division between high and low bit
+#define IR_START_LENGTH 133 // ~3500 us - division between high and start bit
+#define IR_IDLE_LENGTH 1000 // if the state is unchanged for a long time, ignore things
+
+#define IR_RX_NODATA 0x01
+#define IR_RX_RECEIVING 0x02
+#define IR_RX_DONE 0x04
+#define IR_RX_IDLE 0x10
+#define IR_RX_READY 0x08
+
 class IR_Receiver{
-public: //for debug
-	uint8_t tracking;
-	uint8_t rxbitpos; //position in bit
+public:
+	uint8_t last;
+	uint8_t IRpin;
+    uint8_t currentread;
+	uint16_t count;
+	uint8_t change_count;
 	uint8_t rxbytepos; //position in byte
-	uint8_t rxstate; //whether the incoming bit is are high or low (must be 1 or 0)
+	uint8_t rxstate; //state of receiver: nodata,receiving,done
 	uint8_t rxbyte; //currently incoming data
 	Circular_Buffer buffer;
-	int errors;
 
-	void addBit();  //called by the rxCallback, which gets data 1 bit at a time
-//public:
-	//	debug:
-		int transitions;
-		int lengths[20];
-		int values[20];
+	//bitstream:
+	uint8_t incoming_byte;
 
 
-	//called at 38Khz.  Sample the incoming signal.
-	//pass in the state of the receiver.  assumes normal encoding, and that the transmitter has the same bitlength
-	void rxCallback(uint8_t sig);
-	//initialize, start looking for a signal
-	void begin();
-	void flush();
+	void begin(int p);
+
+
+
+
+	//this does not deal with start/end conditions
+	void addBit();
+
+	//if count gets > IR_START_LENGTH and we have not transitioned, we are done, or we are beginning
+	//either way, if we have data in the queue, process that and get ready for new data
+	//only called if count > IR_START_LENGTH
+	void longBit(bool has_changed);
+
+	void rxCallback();  //called by an external interrupt
+	void rxCountCallback(); //called by the timer
 };
+
 
 //This class takes care of the physical layer
 //as well as the software checksum layer
@@ -165,7 +210,7 @@ public: //for debug
     uint8_t countcheck(uint16_t num);
     //debug:
     void ConstantOn();
-	int getTrans(){ return rx.transitions;}
+//	int getTrans(){ return rx.transitions;}
 };
 
 extern IR_COM IR;

@@ -16,14 +16,14 @@
  #include "WProgram.h"
 #endif
 
-void toggleLED1(){
+void _toggleLED1(){
   if(PORTB & 0x04)
     PORTB &= 0xfb;
   else
     PORTB |= 0x04;
 }
 
-void toggleLED2(){
+void _toggleLED2(){
   if(PORTB & 0x02)
     PORTB &= 0xfd;
   else
@@ -36,86 +36,222 @@ SIGNAL(TIMER0_COMPA_vect)
 }
 
 
+
+SIGNAL(PCINT0_vect)
+{
+	IR.rx.rxCallback();
+
+}
+
+
+//void IR_Receiver::addBit(){
+//	//shift incoming data (deal with full byte at end)
+//	rxbyte = rxbyte << 1; //do it this way so we can scan for a header/sync byte
+//	rxbyte+=rxstate; //add new bit
+//	rxbytepos=(rxbytepos+1)%8;
+//	if(rxbytepos==0){//filled up the byte
+//		buffer.push(rxbyte);
+//		//DEBUG:
+//		if(rxbyte==0)
+//			tracking=1;
+//	}
+//}
+////tracking behavior:  if we start out seeing a bunch of zeros:  on the first high, start bit.
+////					  if we start seeing ones, we must be in the middle of a bit, look for a 0
+////							either way, we start clocking on a transition.
+////tracking: 2-> have not sampled at all
+////          1-> have sampled at least once, no transition so far
+//
+////IR_Receiver::IR_Receiver(Circular_Buffer *b){
+////	buffer=b;
+////	init();
+////}
+////called at 38Khz.  Sample the incoming signal.
+////pass in the state of the receiver.  assumes normal encoding, and that the transmitter has the same bitlength
+//void IR_Receiver::rxCallback(uint8_t sig){
+//	if(tracking==2){
+//		rxstate=sig; //record current state
+//		tracking=1;  //mark that we have recorded a sample
+//		return;
+//	}
+//	if(sig == rxstate){//same direction as last time. means this bit is continuing, or new bit with same value
+//		if(tracking) //still waiting for a transition
+//			return;
+//		rxbitpos++; // increment bit position
+////		if(rxbitpos>IR_BITLENGTH){ //Full bit received. (give allowance for +/- 1 period, and start counting at 0)
+////			rxbitpos-=(IR_BITLENGTH-1);//reset bit position.
+////			//We don't know exactly where the transition was, but the error will be absorbed in the transition (and is non-cumulative)
+////			addBit();
+////		}//rxbitpos > IR_BITLENGTH+1
+//	}
+//	else{ //if the bit transitioned
+//		if(tracking){ //this is the first transition
+//			rxbitpos=0; //position is 0th, since just had a transition
+//			rxbytepos=0;//have not received any bits
+//			rxbyte=0;   //current data state
+//			tracking=0; //we are no longer looking for first transition
+//			rxstate=sig; //record current state
+//			return;
+//		}
+//		lengths[transitions]=rxbitpos;
+//		values[transitions]=rxstate;
+//		transitions++;
+//		//if we were not tracking:
+//		//we could have had a bit, or an error.
+//		if(rxbitpos>=(IR_BITLENGTH-6)){//Full bit received. (give allowance for +/- 5 period, and start counting at 0)
+//			addBit(); //uses rxstate
+//		}
+//		else{//if bit was too short, may have bit error.  raise flag.
+//			errors++;// |= RX_BIT_ERROR;  //TODO: deal with errors (clear, etc.) somewhere
+//		}
+//		//either way, reset position and record state
+//		rxbitpos=0; //position is 0th, since just had a transition
+//		rxstate=sig; //record current state
+//	}
+//}
+////initialize, start looking for a signal
+//void IR_Receiver::begin(){
+//	flush();
+//}
+//void IR_Receiver::flush(){
+//	tracking=2;
+//	errors=0;
+//	buffer.flush();
+//	transitions=0;
+//	for(int i=0;i<20;i++){
+//		lengths[i]=0;
+//		values[i]=0;
+//	}
+//}
+
+
+void IR_Receiver::begin(int p){
+	IRpin=p;
+	pinMode(IRpin, INPUT);
+	count=0;
+	change_count=0;
+	last = digitalRead(IRpin);
+	//setupExternalInterrupt:
+	PCICR |= 0x01; //enable interrupts for PCINT7..0
+	PCMSK0 = 0x10; //set the mask to only look at PCINT4
+
+}
+
+
+
+
+//this does not deal with start/end conditions
 void IR_Receiver::addBit(){
+//	direction[change_count]|=0x10;
 	//shift incoming data (deal with full byte at end)
 	rxbyte = rxbyte << 1; //do it this way so we can scan for a header/sync byte
-	rxbyte+=rxstate; //add new bit
+	if(count > IR_HIGH_LENGTH){
+		rxbyte+=1; //add 1 bit
+               //     direction[change_count]|=0x20;
+            }
 	rxbytepos=(rxbytepos+1)%8;
 	if(rxbytepos==0){//filled up the byte
 		buffer.push(rxbyte);
-		//DEBUG:
-		if(rxbyte==0)
-			tracking=1;
 	}
 }
-//tracking behavior:  if we start out seeing a bunch of zeros:  on the first high, start bit.
-//					  if we start seeing ones, we must be in the middle of a bit, look for a 0
-//							either way, we start clocking on a transition.
-//tracking: 2-> have not sampled at all
-//          1-> have sampled at least once, no transition so far
 
-//IR_Receiver::IR_Receiver(Circular_Buffer *b){
-//	buffer=b;
-//	init();
+////if count gets > IR_START_LENGTH and we have not transitioned, we are done, or we are beginning
+////either way, if we have data in the queue, process that and get ready for new data
+////only called if count > IR_START_LENGTH
+//void IR_Receiver::longBit(){
+//
+//	//other cases:  just means we are done.
+//	if(rxstate == IR_RX_RECEIVING){ //if we have not finished up
+//		if(change_count<8){ //no valid data - mark as no data
+////		  change_count=0;
+//		  rxstate = IR_RX_NODATA;
+//		}
+//		else
+//			rxstate = IR_RX_DONE;
+//		//do other things?
+//		  change_count=0;
+//	}
+//
 //}
-//called at 38Khz.  Sample the incoming signal.
-//pass in the state of the receiver.  assumes normal encoding, and that the transmitter has the same bitlength
-void IR_Receiver::rxCallback(uint8_t sig){
-	if(tracking==2){
-		rxstate=sig; //record current state
-		tracking=1;  //mark that we have recorded a sample
+
+//working version on 1/26/13
+//inline void IR_Receiver::rxCallback(){
+//    currentread=digitalRead(IRpin);
+//	count++; //measuring time passed between transitions
+//	//figure out if direction changed, and current signal is 0
+//	//we measure the length of the high
+//	if(currentread != last){ //better than calling changed for some reason...
+////		TimerValue[change_count]=count;
+////		direction[change_count]=currentread;
+//		if(currentread==0){//get the time that the pin has been high
+//			if(count > IR_START_LENGTH)
+//				longBit(true); //starts or stops sequence
+//			else
+//				addBit();  //records bit
+//		}
+//		count=0;//either way, mark time we went transitioned...
+//        change_count++;
+//	}
+//	else{
+//		if(count > IR_START_LENGTH+30){
+//			longBit(false); //allow detection of no data
+//			count-=29; //this sets the frequency that we will 'recheck' done state
+//			//and also makes sure count does not wrap around
+//		}
+//	}
+//    last = currentread;
+//}
+
+//this gets called by the external interrupt
+inline void IR_Receiver::rxCallback(){
+	if(rxstate == IR_RX_IDLE){ //this would be the first transition in a while.  this should mean it is a high to low trans....
+		rxstate=IR_RX_READY;
 		return;
 	}
-	if(sig == rxstate){//same direction as last time. means this bit is continuing, or new bit with same value
-		if(tracking) //still waiting for a transition
-			return;
-		rxbitpos++; // increment bit position
-//		if(rxbitpos>IR_BITLENGTH){ //Full bit received. (give allowance for +/- 1 period, and start counting at 0)
-//			rxbitpos-=(IR_BITLENGTH-1);//reset bit position.
-//			//We don't know exactly where the transition was, but the error will be absorbed in the transition (and is non-cumulative)
-//			addBit();
-//		}//rxbitpos > IR_BITLENGTH+1
-	}
-	else{ //if the bit transitioned
-		if(tracking){ //this is the first transition
-			rxbitpos=0; //position is 0th, since just had a transition
-			rxbytepos=0;//have not received any bits
-			rxbyte=0;   //current data state
-			tracking=0; //we are no longer looking for first transition
-			rxstate=sig; //record current state
-			return;
-		}
-		lengths[transitions]=rxbitpos;
-		values[transitions]=rxstate;
-		transitions++;
-		//if we were not tracking:
-		//we could have had a bit, or an error.
-		if(rxbitpos>=(IR_BITLENGTH-6)){//Full bit received. (give allowance for +/- 5 period, and start counting at 0)
-			addBit(); //uses rxstate
-		}
-		else{//if bit was too short, may have bit error.  raise flag.
-			errors++;// |= RX_BIT_ERROR;  //TODO: deal with errors (clear, etc.) somewhere
-		}
-		//either way, reset position and record state
-		rxbitpos=0; //position is 0th, since just had a transition
-		rxstate=sig; //record current state
-	}
-}
-//initialize, start looking for a signal
-void IR_Receiver::begin(){
-	flush();
-}
-void IR_Receiver::flush(){
-	tracking=2;
-	errors=0;
-	buffer.flush();
-	transitions=0;
-	for(int i=0;i<20;i++){
-		lengths[i]=0;
-		values[i]=0;
-	}
-}
 
+	if(!(PINB & 0x10)){//if the pin is low
+		if(count > IR_START_LENGTH){ //just went low after long time high? looks like start bit!
+			if(rxstate & (IR_RX_RECEIVING)){ //wait - we just were receiving.  we must be done.
+				rxstate=IR_RX_DONE; //mark that we are getting data
+			}
+			else{
+				rxstate=IR_RX_RECEIVING; //mark that we are getting data
+				rxbytepos=0;
+				rxbyte=0;
+			}
+		}
+		else
+			addBit();  //records bit
+	}
+	count=0;//either way, mark time we went transitioned...
+	change_count++;
+}
+//just to keep things neat...
+//This callback is called byt the main IR callback
+//the functions here are:
+//1) detect when the reciever has been idle for a while, and make the stream as done
+//2) maintain a count for determining how long the pulse was
+inline void IR_Receiver::rxCountCallback(){
+	if(rxstate == IR_RX_IDLE) //don't even count if we are not seeing anything
+		return;
+	++count;
+	if((PINB & 0x10) && count > IR_IDLE_LENGTH){
+		rxstate = IR_RX_IDLE;
+		count=0;
+	}
+//		if(rxstate == IR_RX_RECEIVING){ //if we have not finished up
+//			if(change_count<8){ //no valid data - mark as no data
+//	//		  change_count=0;
+//			  rxstate = IR_RX_NODATA;
+//			}
+//			else
+//				rxstate = IR_RX_DONE;
+//			//do other things?
+//			  change_count=0;
+//		}
+//		//and also makes sure count does not wrap around
+//	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //in IR communication (or atleast that used by most remotes) 1/0 is determined by the length of off segments
@@ -163,7 +299,7 @@ uint8_t IR_Transmitter::txCallback(){
 		}
 		else{//nothing left to transmit. shut it down.
 			txcomplete=1;
-			toggleLED1();
+//			toggleLED1();
 			return IR_TX_END;
 		}
 	}
@@ -247,7 +383,7 @@ void IR_COM::begin(){
 	// 0000xxxx - initially, do not toggle outputs on compare match
 	// xxxx00xx - reserved
 	// xxxxxx10 - CTC mode
-	TCCR0A = 0x02;
+	TCCR0A = 0x42;
 
 	//TCCR0B
 	// 00xxxxxx - Force output compare (don't)
@@ -264,19 +400,23 @@ void IR_COM::begin(){
 
 
 	//initialize rx, tx classes:
-	rx.begin();
+	rx.begin(12);
+	tx.begin();
 
 }
 
 
 
 //called at 38Khz x2
-void IR_COM::callback(){
+inline void IR_COM::callback(){
 	//TODO: implement locking
 	//TODO: have separate tx for different LEDs
 	//first deal with receiver
-//	uint8_t sig = (PINB & 0x10)?0:1; //flip
-//	rx.rxCallback(sig);
+
+
+
+
+	rx.rxCountCallback();
 	//txstate indicates what part of transmitting we are doing - high bit or low bit
 	//after every low bit comes a high bit
 	//txcount tells us the interrupts left until we change
@@ -287,6 +427,8 @@ void IR_COM::callback(){
 //		PORTB &= 0xfb;
 
 	callcount++; //for keeping track of time for delays
+		_toggleLED2();
+//	return;
 	if(txcount)
 		txcount--;
 	else{//if txcount=0, must make transition.
@@ -340,7 +482,7 @@ uint8_t IR_COM::available(){ return rx.buffer.size(); }
 int IR_COM::peek(){ return rx.buffer.front(); }
 int IR_COM::read(){ return rx.buffer.pop(); }
 void IR_COM::txflush(){tx.flush();}
-void IR_COM::rxflush(){rx.flush();}
+//void IR_COM::rxflush(){rx.flush();}
 void IR_COM::write(uint8_t d){tx.buffer.push(d);}
 
 void IR_COM::resetCount(){ //resets callcount, so it can be used as a timer
@@ -357,4 +499,9 @@ void IR_COM::ConstantOn(){
 //	TIMSK0 = 0x00;
 //	TCCR0A = 0x52;
 }
+
+
+// Preinstantiate Objects //////////////////////////////////////////////////////
+
+IR_COM IR = IR_COM();
 

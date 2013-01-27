@@ -11,6 +11,7 @@
 #include <avr/pgmspace.h>
 #include "MCP23017.h"
 #include "Hackerling_Shield.h"
+#include "LCD.h"
 
 
 #if ARDUINO >= 100
@@ -32,9 +33,9 @@ SIGNAL(ADC_vect){
 void Speaker::playNote(uint8_t n,uint16_t dur){
 	setNote(n);
 	turnOn();
-	delay(dur);
+	delayMicroseconds(dur);
 	turnOff();
-	delay(5);
+	delayMicroseconds(5);
 }
 
 

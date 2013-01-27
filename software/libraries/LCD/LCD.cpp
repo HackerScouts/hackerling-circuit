@@ -27,6 +27,21 @@
  #include "WProgram.h"
 #endif
 
+void toggleLED1a(){
+  if(PORTB & 0x04)
+    PORTB &= 0xfb;
+  else
+    PORTB |= 0x04;
+}
+
+void toggleLED2a(){
+  if(PORTB & 0x02)
+    PORTB &= 0xfd;
+  else
+    PORTB |= 0x02;
+}
+
+
 // When the display powers up, it is configured as follows:
 //
 // 1. Display clear
@@ -360,6 +375,8 @@ void  LCD::_pinMode(uint8_t p, uint8_t d) {
 
 // write either command or data, with automatic 4/8-bit selection
 void LCD::send(uint8_t value, uint8_t mode) {
+
+
   _digitalWrite(_rs_pin, mode);
 
   // if there is a RW pin indicated, set it low to Write
@@ -388,6 +405,7 @@ void LCD::write4bits(uint8_t value) {
   if (_i2cAddr != 255) {
     uint16_t out = 0;
 
+
     out = _i2c.readGPIOAB();
 
     // speed up for i2c since its sluggish
@@ -400,7 +418,6 @@ void LCD::write4bits(uint8_t value) {
     out &= ~ _BV(_enable_pin);
 
     _i2c.writeGPIOAB(out);
-
     // pulse enable
     delayMicroseconds(1);
     out |= _BV(_enable_pin);
@@ -409,6 +426,8 @@ void LCD::write4bits(uint8_t value) {
     out &= ~_BV(_enable_pin);
     _i2c.writeGPIOAB(out);   
     delayMicroseconds(100);
+    PORTB &= 0xfd;
+
 
   } else {
     for (int i = 0; i < 4; i++) {
