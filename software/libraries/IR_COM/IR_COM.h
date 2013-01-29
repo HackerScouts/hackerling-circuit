@@ -56,6 +56,19 @@ public:
 		pos=0;
 		num=0;
 	}
+	//copy does not erase the buffer
+	uint8_t copy(uint8_t*d, uint8_t max_len){
+		uint8_t _pos=pos, _dp=0;
+		uint8_t _num=num;
+		while(_num > 0 && max_len > _dp){
+			d[_dp++] = que[_pos];
+			_pos=(_pos+1)%CIRC_QUEUESIZE;
+			_num--;
+		}
+		return _dp;
+	}
+
+
 	void push(uint8_t d){
 		uint8_t endbyte=getEndPos();
 		que[endbyte]=d;
@@ -128,6 +141,9 @@ public:
 
 class IR_Receiver{
 public:
+	uint8_t last_data[30]; //the latest data stream
+	uint8_t last_data_len;
+
 	uint8_t last;
 	uint8_t IRpin;
     uint8_t currentread;
@@ -202,7 +218,7 @@ public: //for debug
 	void callback();
 	uint8_t available();
 	int peek();
-	int read();
+	uint8_t read();
     void txflush();
     void rxflush();
     void write(uint8_t d);
@@ -210,10 +226,18 @@ public: //for debug
     uint8_t countcheck(uint16_t num);
     //debug:
     void ConstantOn();
+
+    inline bool isWaitingForData(){ return rx.rxstate!= IR_RX_RECEIVING;}
+
+    inline bool hasData(){ return (rx.rxstate == IR_RX_IDLE) && rx.buffer.size() > 0;}
 //	int getTrans(){ return rx.transitions;}
 };
 
-extern IR_COM IR;
 
-//extern IR_COM *global_IR_;
+//#ifndef HACKERLING_SHIELD_H_
+//extern IR_COM IR;
+//#endif
+
+extern IR_COM* _global_IR;
+
 #endif /* IR_COM_H_ */

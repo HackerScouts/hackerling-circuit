@@ -12,7 +12,10 @@
 #include "MCP23017.h"
 #include "Hackerling_Shield.h"
 #include "LCD.h"
-
+#include <IR_COM.h>
+#include <avr/interrupt.h>
+#include <avr/io.h>
+#include <util/delay.h>
 
 #if ARDUINO >= 100
  #include "Arduino.h"
@@ -26,16 +29,39 @@ SIGNAL(ADC_vect){
   hs.analogReadCallback();
 }
 
+//TODO: These should work... investigate
+//SIGNAL(TIMER0_COMPA_vect)
+//{
+//    hs.IR.callback();
+//}
+//
+//
+//
+//SIGNAL(PCINT0_vect)
+//{
+//	hs.IR.rx.rxCallback();
+//
+//}
 
 
 
+void DelayLoop(uint16_t l){
+	//this is a horrible hack, but necessary to force compiler not to optimize it out...
+	  if(TIMSK0 & 0x01)
+	    TIMSK0 &= 0xfe;
+	  else
+	    TIMSK0 |= 0x01;
+	  //alternate:
+	 // TCCR1B & 0x80 - noise canceler
+	  _delay_loop_2(l);
+}
 
 void Speaker::playNote(uint8_t n,uint16_t dur){
 	setNote(n);
 	turnOn();
-	delayMicroseconds(dur);
+	DelayLoop(dur);
 	turnOff();
-	delayMicroseconds(5);
+	DelayLoop(500);
 }
 
 
@@ -241,7 +267,7 @@ uint8_t Hackerling_Shield::getThermistorValue(){
 uint8_t Hackerling_Shield::getInternalTempValue(){
 	return analog_values[8];
 }
-void Hackerling_Shield::begin(){
+void Hackerling_Shield::begin(uint8_t flags){
 	//Dependents:
 	//Serial
 	  //io-expanders
@@ -255,7 +281,12 @@ void Hackerling_Shield::begin(){
 	   // Buttons
 	   // Bar Graph
 	   // dip switch
+	if(!(flags & NO_LCD))
+		lcd.begin(16,2);
 
+
+	if(!(flags & NO_IR))
+	IR.begin();
 }
 
 

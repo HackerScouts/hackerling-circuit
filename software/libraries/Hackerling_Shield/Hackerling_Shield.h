@@ -11,8 +11,26 @@
 #include <avr/io.h>
 #include <MCP23017.h>
 #include <MCP23008.h>
+#include <LCD.h>
+#include <IR_COM.h>
+
+void DelayLoop(uint16_t l);
+
 
 #define INPUT 0
+
+//for disabling things at startup:
+#define NO_LCD 0x01
+#define NO_IR  0x02
+
+
+//for reading the switches:
+#define DIP1 0x01;
+#define DIP2 0x02;
+#define DIP3 0x04;
+#define DIP4 0x08;
+#define BIG_SWITCH 0x10;
+
 
 //MCP23017 - 16 bit io mapper:
 //GPA0 - Bargraph5
@@ -152,10 +170,14 @@ public:
 	//Buttons class
 	//dipswitch class
 	//servo class
-	//speaker class - depends on tone class
+
 	//analog IO class
 	//thermistor class
 	//LCD class
+	LCD lcd;
+
+	IR_COM IR;
+
 	Speaker speaker;
 
 	//analog stuff:
@@ -188,8 +210,9 @@ public:
 	uint8_t getPotValue();
 	uint8_t getThermistorValue();
 	uint8_t getInternalTempValue();
-	void begin();
+	void begin(uint8_t flags=0);
 
+	//void IRCountCallback();
 
 
 

@@ -16,32 +16,35 @@
  #include "WProgram.h"
 #endif
 
-void _toggleLED1(){
-  if(PORTB & 0x04)
-    PORTB &= 0xfb;
-  else
-    PORTB |= 0x04;
-}
+//void _toggleLED1(){
+//  if(PORTB & 0x04)
+//    PORTB &= 0xfb;
+//  else
+//    PORTB |= 0x04;
+//}
+//
+//void _toggleLED2(){
+//  if(PORTB & 0x02)
+//    PORTB &= 0xfd;
+//  else
+//    PORTB |= 0x02;
+//}
 
-void _toggleLED2(){
-  if(PORTB & 0x02)
-    PORTB &= 0xfd;
-  else
-    PORTB |= 0x02;
-}
 
+//#ifndef HACKERLING_SHIELD_H_
 SIGNAL(TIMER0_COMPA_vect)
 {
-    IR.callback();
+	_global_IR->callback();
 }
 
 
 
 SIGNAL(PCINT0_vect)
 {
-	IR.rx.rxCallback();
+	_global_IR->rx.rxCallback();
 
 }
+//#endif
 
 
 //void IR_Receiver::addBit(){
@@ -126,6 +129,7 @@ SIGNAL(PCINT0_vect)
 
 
 void IR_Receiver::begin(int p){
+	last_data_len=0;
 	IRpin=p;
 	pinMode(IRpin, INPUT);
 	count=0;
@@ -238,6 +242,8 @@ inline void IR_Receiver::rxCountCallback(){
 	if((PINB & 0x10) && count > IR_IDLE_LENGTH){
 		rxstate = IR_RX_IDLE;
 		count=0;
+		//copy data to last:
+		last_data_len = buffer.copy(last_data,30);
 	}
 //		if(rxstate == IR_RX_RECEIVING){ //if we have not finished up
 //			if(change_count<8){ //no valid data - mark as no data
@@ -373,6 +379,7 @@ void IR_COM::setOutput(uint8_t flag){
 }
 
 void IR_COM::begin(){
+	_global_IR = this;
 	txstate=IR_TX_OFF;
 	txcount=0;
 	//initialize pins:
@@ -427,7 +434,7 @@ inline void IR_COM::callback(){
 //		PORTB &= 0xfb;
 
 	callcount++; //for keeping track of time for delays
-		_toggleLED2();
+//		_toggleLED2();
 //	return;
 	if(txcount)
 		txcount--;
@@ -480,7 +487,7 @@ inline void IR_COM::callback(){
 }
 uint8_t IR_COM::available(){ return rx.buffer.size(); }
 int IR_COM::peek(){ return rx.buffer.front(); }
-int IR_COM::read(){ return rx.buffer.pop(); }
+uint8_t IR_COM::read(){ return rx.buffer.pop(); }
 void IR_COM::txflush(){tx.flush();}
 //void IR_COM::rxflush(){rx.flush();}
 void IR_COM::write(uint8_t d){tx.buffer.push(d);}
@@ -502,6 +509,7 @@ void IR_COM::ConstantOn(){
 
 
 // Preinstantiate Objects //////////////////////////////////////////////////////
-
-IR_COM IR = IR_COM();
-
+//#ifndef HACKERLING_SHIELD_H_
+//IR_COM IR = IR_COM();
+//#endif
+IR_COM *_global_IR;
