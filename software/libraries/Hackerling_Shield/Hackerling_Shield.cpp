@@ -48,7 +48,10 @@ SIGNAL(ADC_vect){
 
 
 void DelayLoop(uint16_t l){
-	_delay_ms(l);
+	hs.IR.resetCount();
+	while(hs.IR.countcheck(l));
+//
+//	_delay_ms(l);
 	//this is a horrible hack, but necessary to force compiler not to optimize it out...
 //	for(uint16_t i=0;i<l;i++){
 //		for(int)

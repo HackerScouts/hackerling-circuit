@@ -398,7 +398,7 @@ void LCD::pulseEnable(void) {
   _digitalWrite(_enable_pin, HIGH);
   delayMicroseconds(1);    // enable pulse must be >450ns
   _digitalWrite(_enable_pin, LOW);
-  delayMicroseconds(100);   // commands need > 37us to settle
+  delayMicroseconds(50);   // commands need > 37us to settle
 }
 
 void LCD::write4bits(uint8_t value) {
@@ -425,7 +425,7 @@ void LCD::write4bits(uint8_t value) {
     delayMicroseconds(1);
     out &= ~_BV(_enable_pin);
     _i2c.writeGPIOAB(out);   
-    delayMicroseconds(100);
+    delayMicroseconds(50);
     PORTB &= 0xfd;
 
 
