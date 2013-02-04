@@ -17,11 +17,18 @@
 #define IR_TX_BITLENGTH0 45 //low length
 #define IR_TX_BITLENGTH1 30 //high length
 
-#define IR_TX_HIGHLEN 40 //width of on part of signal in interrupt counts (twice per wavelength)
-#define IR_TX_LOWLEN0 47 //width of off segment used to express 0 bit in interrupt counts (twice per wavelength)
-#define IR_TX_LOWLEN1 124 //width of off segment used to express 1 bit in interrupt counts (twice per wavelength)
+//#define IR_TX_POSTSTARTLEN 350 //width of on segment before off start segment in interrupt counts (twice per wavelength)
+//#define IR_TX_HIGHLEN 40 //width of on part of signal in interrupt counts (twice per wavelength)
+//#define IR_TX_LOWLEN0 47 //width of off segment used to express 0 bit in interrupt counts (twice per wavelength)
+//#define IR_TX_LOWLEN1 124 //width of off segment used to express 1 bit in interrupt counts (twice per wavelength)
+
+#define IR_TX_HIGHLEN 33 //width of on part of signal in interrupt counts (twice per wavelength)
+#define IR_TX_LOWLEN0 30 //width of off segment used to express 0 bit in interrupt counts (twice per wavelength)
+#define IR_TX_LOWLEN1 97 //width of off segment used to express 1 bit in interrupt counts (twice per wavelength)
+#define IR_TX_POSTSTARTLEN 270 //width of on segment before off start segment in interrupt counts (twice per wavelength)
+
 #define IR_TX_STARTLEN 600 //width of start segment (off) in interrupt counts (twice per wavelength)
-#define IR_TX_POSTSTARTLEN 350 //width of on segment before off start segment in interrupt counts (twice per wavelength)
+//#define IR_TX_POSTSTARTLEN 350 //width of on segment before off start segment in interrupt counts (twice per wavelength)
 
 #define IR_TX_OFF   0x20    //for phy layer bookkeeping
 #define IR_TX_START 0x01

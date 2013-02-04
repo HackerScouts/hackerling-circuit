@@ -1,3 +1,7 @@
+#include <IR_COM.h>
+
+#include <LCD.h>
+
 #include <Wire.h>
 
 #include <MCP23017.h>
@@ -31,7 +35,7 @@ void setup(){
   // Debugging output
   Serial.begin(9600);
   // set up the LCD's number of columns and rows:
-	hs.begin();
+	hs.begin(NO_LCD);
 	fullpot=0;
 	fullswitch=0;
 	fulldips=0;
@@ -59,7 +63,7 @@ int8_t updateGraph(){
 }
 
 void playButtonNotes(uint8_t b){
-	uint8_t scale=pot;
+	uint8_t scale=pot/5+2;
 		if(fulldips==0xff)
 			hs.speaker.playNote(NOTE_B,2*scale);
 		if(fullswitch==3)
@@ -116,7 +120,7 @@ void errors(){
 
 
 void loop() {
-
+        //TODO: make done condition where it behaves differently
 	buttons = hs.readButtons();
 	verifiers();
 	pot = hs.getPotValue();
@@ -124,7 +128,7 @@ void loop() {
 	if(updateGraph())
 		playButtonNotes(total);
 	errors();
-	delay(pot);
+	DelayLoop(pot/5);
 //	Serial.print("Pin "); Serial.print(pin);Serial.print("\n");
 
 

@@ -10,8 +10,13 @@ When a button is pressed, the backlight changes color.
 // include the library code:
 #include <Wire.h>
 #include <MCP23008.h>
-#include <MCP23017.h>
-#include <Hackerling_Shield.h>
+//#include <MCP23017.h>
+//#include <Hackerling_Shield.h>
+#define BARGRAPH0 0
+#define BARGRAPH1 1
+#define BARGRAPH2 2
+#define BARGRAPH3 3
+#define BARGRAPH4 4
 #include "Print.h"
 
 // The shield uses the I2C SCL and SDA pins. On classic Arduinos
@@ -33,11 +38,11 @@ void setup() {
 	iomap.pinMode(BARGRAPH3, OUTPUT);
 	iomap.pinMode(BARGRAPH4, OUTPUT);
 	//set all the pins to high (turns LEDs off)
-    iomap.digitalWrite(BARGRAPH5,1);
-    iomap.digitalWrite(BARGRAPH6,1);
-    iomap.digitalWrite(BARGRAPH7,1);
-    iomap.digitalWrite(BARGRAPH8,1);
-    iomap.digitalWrite(BARGRAPH9,1);
+    iomap.digitalWrite(BARGRAPH0,1);
+    iomap.digitalWrite(BARGRAPH1,1);
+    iomap.digitalWrite(BARGRAPH2,1);
+    iomap.digitalWrite(BARGRAPH3,1);
+    iomap.digitalWrite(BARGRAPH4,1);
 
 }
 

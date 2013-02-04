@@ -1,33 +1,9 @@
 #include <IR_COM.h>
-
-
 #include <Hackerling_Shield.h>
-
 #include <MCP23008.h>
-
 #include <Wire.h>
 #include <MCP23017.h>
-
 #include <LCD.h>
-
-/*
- * Read_Receiver.cpp
- *
- *  Created on: Jan 20, 2013
- *      Author: garratt
- */
-
-
-/*
- *  File....... IRanalyzer.pde
- *  Purpose.... Records up to 128 signal changes
- *  Author..... Walter Anderson
- *  E-mail..... wandrson@walteranderson.us
- *  Started.... 18 May 2007
- *  Updated.... 18 May 2007
- *
- *
- */
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <util/delay.h>

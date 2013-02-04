@@ -1,3 +1,5 @@
+#include <IR_COM.h>
+
 /*********************
 
 Example code for the Adafruit RGB Character LCD Shield and Library

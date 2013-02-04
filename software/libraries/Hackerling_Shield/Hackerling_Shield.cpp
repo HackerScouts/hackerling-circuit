@@ -13,10 +13,12 @@
 #include "Hackerling_Shield.h"
 #include "LCD.h"
 #include <IR_COM.h>
+
+//extern "C"{
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <util/delay.h>
-
+//}
 #if ARDUINO >= 100
  #include "Arduino.h"
 #else
@@ -46,14 +48,18 @@ SIGNAL(ADC_vect){
 
 
 void DelayLoop(uint16_t l){
+	_delay_ms(l);
 	//this is a horrible hack, but necessary to force compiler not to optimize it out...
-	  if(TIMSK0 & 0x01)
-	    TIMSK0 &= 0xfe;
-	  else
-	    TIMSK0 |= 0x01;
-	  //alternate:
-	 // TCCR1B & 0x80 - noise canceler
-	  _delay_loop_2(l);
+//	for(uint16_t i=0;i<l;i++){
+//		for(int)
+//	  if(TIMSK0 & 0x01)
+//	    TIMSK0 &= 0xfe;
+//	  else
+//	    TIMSK0 |= 0x01;
+//	}
+//	  //alternate:
+//	 // TCCR1B & 0x80 - noise canceler
+//	  _delay_loop_2(l);
 }
 
 void Speaker::playNote(uint8_t n,uint16_t dur){
@@ -61,7 +67,7 @@ void Speaker::playNote(uint8_t n,uint16_t dur){
 	turnOn();
 	DelayLoop(dur);
 	turnOff();
-	DelayLoop(500);
+	DelayLoop(5);
 }
 
 

@@ -1,3 +1,7 @@
+#include <IR_COM.h>
+
+#include <LCD.h>
+
 
 #include <Wire.h>
 
@@ -28,33 +32,106 @@ void setup() {
 }
 
 void marylamb(){
-	uint16_t scale=1;
-	hs.speaker.playNote(NOTE_E,200*scale);
-	hs.speaker.playNote(NOTE_D,200*scale);
-	hs.speaker.playNote(NOTE_C,200*scale);
-	hs.speaker.playNote(NOTE_D,200*scale);
-	hs.speaker.playNote(NOTE_E,200*scale);
-	hs.speaker.playNote(NOTE_E,200*scale);
-	hs.speaker.playNote(NOTE_E,400*scale);
-	hs.speaker.playNote(NOTE_D,200*scale);
-	hs.speaker.playNote(NOTE_D,200*scale);
-	hs.speaker.playNote(NOTE_D,400*scale);
-	hs.speaker.playNote(NOTE_E,200*scale);
-	hs.speaker.playNote(NOTE_G,200*scale);
-	hs.speaker.playNote(NOTE_G,400*scale);
-	hs.speaker.playNote(NOTE_E,200*scale);
-	hs.speaker.playNote(NOTE_D,200*scale);
-	hs.speaker.playNote(NOTE_C,200*scale);
-	hs.speaker.playNote(NOTE_D,200*scale);
-	hs.speaker.playNote(NOTE_E,200*scale);
-	hs.speaker.playNote(NOTE_E,200*scale);
-	hs.speaker.playNote(NOTE_E,400*scale);
-	hs.speaker.playNote(NOTE_D,200*scale);
-	hs.speaker.playNote(NOTE_D,200*scale);
-	hs.speaker.playNote(NOTE_E,200*scale);
-	hs.speaker.playNote(NOTE_D,200*scale);
-	hs.speaker.playNote(NOTE_C,600*scale);
+	uint16_t scale=3;
+	hs.speaker.playNote(NOTE_E,20*scale);
+	hs.speaker.playNote(NOTE_D,20*scale);
+	hs.speaker.playNote(NOTE_C,20*scale);
+	hs.speaker.playNote(NOTE_D,20*scale);
+	hs.speaker.playNote(NOTE_E,20*scale);
+	hs.speaker.playNote(NOTE_E,20*scale);
+	hs.speaker.playNote(NOTE_E,40*scale);
+	hs.speaker.playNote(NOTE_D,20*scale);
+	hs.speaker.playNote(NOTE_D,20*scale);
+	hs.speaker.playNote(NOTE_D,40*scale);
+	hs.speaker.playNote(NOTE_E,20*scale);
+	hs.speaker.playNote(NOTE_G,20*scale);
+	hs.speaker.playNote(NOTE_G,40*scale);
+	hs.speaker.playNote(NOTE_E,20*scale);
+	hs.speaker.playNote(NOTE_D,20*scale);
+	hs.speaker.playNote(NOTE_C,20*scale);
+	hs.speaker.playNote(NOTE_D,20*scale);
+	hs.speaker.playNote(NOTE_E,20*scale);
+	hs.speaker.playNote(NOTE_E,20*scale);
+	hs.speaker.playNote(NOTE_E,40*scale);
+	hs.speaker.playNote(NOTE_D,20*scale);
+	hs.speaker.playNote(NOTE_D,20*scale);
+	hs.speaker.playNote(NOTE_E,20*scale);
+	hs.speaker.playNote(NOTE_D,20*scale);
+	hs.speaker.playNote(NOTE_C,60*scale);
 }
+
+void starwars(){
+	uint16_t scale=3;
+        hs.speaker.setOctave(2);
+	hs.speaker.playNote(NOTE_G,40*scale);
+	hs.speaker.playNote(NOTE_G,40*scale);
+	hs.speaker.playNote(NOTE_B,30*scale);
+	hs.speaker.setOctave(3);
+	hs.speaker.playNote(NOTE_G,30*scale);
+	hs.speaker.playNote(NOTE_D,30*scale);
+        hs.speaker.playNote(NOTE_C,10*scale);
+        hs.speaker.setOctave(2);
+	hs.speaker.playNote(NOTE_B,10*scale);
+	hs.speaker.playNote(NOTE_A,10*scale);
+
+	hs.speaker.setOctave(4);
+	hs.speaker.playNote(NOTE_G,30*scale);
+	hs.speaker.playNote(NOTE_D,30*scale);
+        hs.speaker.playNote(NOTE_C,10*scale);
+        hs.speaker.setOctave(3);
+	hs.speaker.playNote(NOTE_B,10*scale);
+	hs.speaker.playNote(NOTE_A,10*scale);
+
+
+	hs.speaker.setOctave(4);
+	hs.speaker.playNote(NOTE_G,30*scale);
+	hs.speaker.playNote(NOTE_D,30*scale);
+        hs.speaker.playNote(NOTE_C,10*scale);
+        hs.speaker.setOctave(3);
+	hs.speaker.playNote(NOTE_B,10*scale);
+	hs.speaker.setOctave(4);
+	hs.speaker.playNote(NOTE_C,10*scale);
+        hs.speaker.setOctave(3);
+	hs.speaker.playNote(NOTE_A,50*scale);
+
+}
+void starwars2(){
+	uint16_t scale=3;
+        hs.speaker.setOctave(3);
+	hs.speaker.playNote(NOTE_Cs,10*scale);
+	hs.speaker.playNote(NOTE_D,10*scale);
+	hs.speaker.playNote(NOTE_D,10*scale);
+        hs.speaker.setOctave(2);
+        hs.speaker.playNote(NOTE_A,10*scale);
+        hs.speaker.setOctave(3);
+	hs.speaker.playNote(NOTE_Gs,30*scale);
+	hs.speaker.setOctave(4);
+	hs.speaker.playNote(NOTE_B,30*scale);
+        hs.speaker.setOctave(3);
+        hs.speaker.playNote(NOTE_A,10*scale);
+	hs.speaker.playNote(NOTE_Cs,10*scale);
+	hs.speaker.playNote(NOTE_D,10*scale);
+        hs.speaker.setOctave(2);
+        hs.speaker.playNote(NOTE_A,10*scale);
+        hs.speaker.setOctave(3);
+	hs.speaker.playNote(NOTE_Gs,30*scale);
+	hs.speaker.setOctave(4);
+	hs.speaker.playNote(NOTE_B,30*scale);
+        hs.speaker.setOctave(3);
+        hs.speaker.playNote(NOTE_A,10*scale);
+	hs.speaker.playNote(NOTE_Cs,10*scale);
+	hs.speaker.playNote(NOTE_D,10*scale);
+
+
+
+}
+//G D, CBA >GD CBA >GD CBC A... (repeat)
+//C FEDCCDED ABG, C FEDCCDED GD
+ 
+//C G FED C G FED CG FEFD, C G FED C G FED CG FEFD
+
+
+
 
 void scales(){
 	for(int i=1;i<5;i++){
