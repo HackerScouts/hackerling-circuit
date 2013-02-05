@@ -63,22 +63,22 @@ int8_t updateGraph(){
 }
 
 void playButtonNotes(uint8_t b){
-	uint8_t scale=pot/5+2;
+	uint8_t scale=pot;
 		if(fulldips==0xff)
-			hs.speaker.playNote(NOTE_B,2*scale);
+			hs.speaker.playNote(NOTE_B,2*scale+2);
 		if(fullswitch==3)
-			hs.speaker.playNote(NOTE_C,2*scale);
+			hs.speaker.playNote(NOTE_C,2*scale+2);
 		if(b & BUTTON_UP)
-			hs.speaker.playNote(NOTE_D,2*scale);
+			hs.speaker.playNote(NOTE_D,2*scale+2);
 		if(b & BUTTON_LEFT)
-			hs.speaker.playNote(NOTE_E,2*scale);
+			hs.speaker.playNote(NOTE_E,2*scale+2);
 		if(b & BUTTON_RIGHT)
-			hs.speaker.playNote(NOTE_F,2*scale);
+			hs.speaker.playNote(NOTE_F,2*scale+2);
 		if(b & BUTTON_DOWN)
-			hs.speaker.playNote(NOTE_G,2*scale);
+			hs.speaker.playNote(NOTE_G,2*scale+2);
 		if(fullpot==3)
-			hs.speaker.playNote(NOTE_A,2*scale);
-		delay(100);
+			hs.speaker.playNote(NOTE_A,2*scale+2);
+		DelayLoop(100);
 }
 
 void verifiers(){
@@ -128,7 +128,7 @@ void loop() {
 	if(updateGraph())
 		playButtonNotes(total);
 	errors();
-	DelayLoop(pot/5);
+	DelayLoop(pot+5);
 //	Serial.print("Pin "); Serial.print(pin);Serial.print("\n");
 
 

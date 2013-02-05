@@ -63,8 +63,8 @@ void loop()                                 //The Loop Function. This gets run f
    uint8_t buttons= hs.readButtons();          //read the buttons - see which ones are pressed
    if(buttons == BUTTON_DOWN){
          trasmitSavedData();
-         hs.speaker.playNote(NOTE_C,20);
-         hs.speaker.playNote(NOTE_F,20);
+         hs.speaker.playNote(NOTE_C,200);
+         hs.speaker.playNote(NOTE_F,200);
    }
 
 
@@ -74,9 +74,9 @@ void loop()                                 //The Loop Function. This gets run f
        printRecievedData();                                        //calls the function at the top of this program
        
        //Play a little sound to indicate we got data:
-       hs.speaker.playNote(NOTE_E,60);
-       hs.speaker.playNote(NOTE_B,40);
-       hs.speaker.playNote(NOTE_E,40);
+       hs.speaker.playNote(NOTE_E,600);
+       hs.speaker.playNote(NOTE_B,400);
+       hs.speaker.playNote(NOTE_E,400);
        
        //Save the data so we can send it out:
        for(savedIR_len=0; savedIR_len<hs.IR.rx.last_data_len && savedIR_len < 32; savedIR_len++){

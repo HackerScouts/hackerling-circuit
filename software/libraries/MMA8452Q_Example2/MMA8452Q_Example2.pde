@@ -60,7 +60,7 @@ void setup()
 {
   byte c;
   
-  Serial.begin(9600);
+  Serial.begin(19200);
   
   /* Set up the interrupt pins, they're set as active high, push-pull */
   pinMode(int1Pin, INPUT);
