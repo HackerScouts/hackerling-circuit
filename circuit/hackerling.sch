@@ -13632,6 +13632,8 @@ Source: AVX .. aphvc.pdf</description>
 <part name="JP2" library="SparkFun" deviceset="M02" device="LOCK"/>
 <part name="GND19" library="supply1" deviceset="GND" device=""/>
 <part name="VCC" library="SparkFun" deviceset="5V" device=""/>
+<part name="R7" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="500"/>
+<part name="R8" library="SparkFun" deviceset="RESISTOR" device="0603-RES" value="500"/>
 </parts>
 <sheets>
 <sheet>
@@ -13738,6 +13740,8 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="JP2" gate="G$1" x="116.84" y="39.37" rot="R180"/>
 <instance part="GND19" gate="1" x="-91.44" y="-3.81" rot="MR0"/>
 <instance part="VCC" gate="G$1" x="365.76" y="101.6"/>
+<instance part="R7" gate="G$1" x="365.76" y="46.99"/>
+<instance part="R8" gate="G$1" x="368.3" y="40.64" rot="R180"/>
 </instances>
 <busses>
 <bus name="BARGRAPH[0..9]">
@@ -14383,9 +14387,9 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="21.59" y1="46.99" x2="19.05" y2="46.99" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="INT2"/>
-<wire x1="383.54" y1="43.18" x2="368.3" y2="43.18" width="0.1524" layer="91"/>
-<label x="368.3" y="43.18" size="1.778" layer="95"/>
+<wire x1="360.68" y1="46.99" x2="351.79" y2="46.99" width="0.1524" layer="91"/>
+<label x="351.79" y="46.99" size="1.778" layer="95"/>
+<pinref part="R7" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="A_INT1" class="0">
@@ -14407,9 +14411,9 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="22.86" y1="49.53" x2="19.05" y2="49.53" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="INT1"/>
-<wire x1="383.54" y1="40.64" x2="368.3" y2="40.64" width="0.1524" layer="91"/>
-<label x="368.3" y="40.64" size="1.778" layer="95"/>
+<wire x1="363.22" y1="40.64" x2="350.52" y2="40.64" width="0.1524" layer="91"/>
+<label x="351.79" y="40.64" size="1.778" layer="95"/>
+<pinref part="R8" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="BTN1" class="0">
@@ -14910,6 +14914,20 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="398.78" y1="101.6" x2="373.38" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="373.38" y1="101.6" x2="373.38" y2="86.36" width="0.1524" layer="91"/>
 <junction x="373.38" y="86.36"/>
+</segment>
+</net>
+<net name="N$6" class="0">
+<segment>
+<pinref part="R7" gate="G$1" pin="2"/>
+<pinref part="U1" gate="G$1" pin="INT2"/>
+<wire x1="370.84" y1="46.99" x2="383.54" y2="43.18" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$7" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="INT1"/>
+<pinref part="R8" gate="G$1" pin="1"/>
+<wire x1="373.38" y1="40.64" x2="383.54" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
