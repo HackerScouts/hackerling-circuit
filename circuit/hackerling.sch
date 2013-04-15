@@ -13653,6 +13653,15 @@ Source: AVX .. aphvc.pdf</description>
 <text x="2.54" y="-8.89" size="1.778" layer="209">Two ways to actuate LCD_En</text>
 <text x="2.54" y="-12.7" size="1.778" layer="209">TODO: add solder jumper</text>
 <wire x1="10.16" y1="20.32" x2="10.16" y2="-6.35" width="0.1524" layer="209"/>
+<text x="166.37" y="-13.97" size="1.778" layer="209">Need Resistor</text>
+<text x="165.1" y="-16.51" size="1.778" layer="209">Need Resistor</text>
+<text x="166.37" y="-19.05" size="1.778" layer="209">Need Resistor</text>
+<text x="7.62" y="33.02" size="1.778" layer="209">Need Resistor</text>
+<text x="5.08" y="45.72" size="1.778" layer="209">Need Resistor</text>
+<text x="158.75" y="43.18" size="1.778" layer="209">Need Resistor</text>
+<text x="158.75" y="48.26" size="1.778" layer="209">Need Resistor</text>
+<text x="158.75" y="50.8" size="1.778" layer="209">Need Resistor</text>
+<text x="158.75" y="53.34" size="1.778" layer="209">Need Resistor</text>
 </plain>
 <instances>
 <instance part="SG1" gate="G$1" x="-7.62" y="15.24" rot="R90"/>
