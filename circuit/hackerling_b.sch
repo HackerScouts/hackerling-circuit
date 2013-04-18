@@ -14320,6 +14320,7 @@ Source: AVX .. aphvc.pdf</description>
 <segment>
 <pinref part="IC2" gate="G$1" pin="GP7"/>
 <wire x1="182.88" y1="-17.78" x2="160.02" y2="-17.78" width="0.1524" layer="91"/>
+<label x="165.1" y="-17.78" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="BARGRAPH3" class="0">
@@ -14330,6 +14331,7 @@ Source: AVX .. aphvc.pdf</description>
 <segment>
 <pinref part="IC2" gate="G$1" pin="GP6"/>
 <wire x1="182.88" y1="-15.24" x2="160.02" y2="-15.24" width="0.1524" layer="91"/>
+<label x="165.1" y="-15.24" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="BARGRAPH4" class="0">
@@ -14340,6 +14342,7 @@ Source: AVX .. aphvc.pdf</description>
 <segment>
 <pinref part="IC2" gate="G$1" pin="GP5"/>
 <wire x1="182.88" y1="-12.7" x2="160.02" y2="-12.7" width="0.1524" layer="91"/>
+<label x="165.1" y="-12.7" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="BARGRAPH5" class="0">
@@ -14372,7 +14375,7 @@ Source: AVX .. aphvc.pdf</description>
 <segment>
 <pinref part="IC2" gate="G$1" pin="GP2"/>
 <wire x1="160.02" y1="-5.08" x2="182.88" y2="-5.08" width="0.1524" layer="91"/>
-<label x="166.37" y="-5.08" size="1.778" layer="95"/>
+<label x="165.1" y="-5.08" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="BARGRAPH8" class="0">
