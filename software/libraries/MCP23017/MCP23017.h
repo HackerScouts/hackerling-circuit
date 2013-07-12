@@ -30,6 +30,7 @@ public:
   void writeGPIOAB(uint16_t);
   void writeGPIOB(uint8_t b);
   uint16_t readGPIOAB();
+  uint16_t readGPIOA();
 
  private:
   uint8_t i2caddr;

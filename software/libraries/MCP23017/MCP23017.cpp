@@ -129,6 +129,19 @@ uint16_t MCP23017::readGPIOAB() {
   return ba;
 }
 
+uint16_t MCP23017::readGPIOA() {
+  uint8_t a;
+
+  // read the current GPIO output latches
+  Wire.beginTransmission(MCP23017_ADDRESS | i2caddr);
+  wiresend(MCP23017_GPIOA);	
+  Wire.endTransmission();
+  
+  Wire.requestFrom(MCP23017_ADDRESS | i2caddr, 1);
+  a = wirerecv();
+  return a;
+}
+
 void MCP23017::writeGPIOAB(uint16_t ba) {
   Wire.beginTransmission(MCP23017_ADDRESS | i2caddr);
   wiresend(MCP23017_GPIOA);	

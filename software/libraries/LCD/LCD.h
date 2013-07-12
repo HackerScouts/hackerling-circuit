@@ -105,6 +105,8 @@ public:
 #endif
   void command(uint8_t);
 //  uint8_t readButtons();
+  void setEnableHigh();
+  void setEnableLow();
 
 private:
   void send(uint8_t, uint8_t);

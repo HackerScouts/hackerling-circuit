@@ -27,19 +27,19 @@
  #include "WProgram.h"
 #endif
 
-void toggleLED1a(){
-  if(PORTB & 0x04)
-    PORTB &= 0xfb;
-  else
-    PORTB |= 0x04;
-}
-
-void toggleLED2a(){
-  if(PORTB & 0x02)
-    PORTB &= 0xfd;
-  else
-    PORTB |= 0x02;
-}
+// void toggleLED1a(){
+//   if(PORTB & 0x04)
+//     PORTB &= 0xfb;
+//   else
+//     PORTB |= 0x04;
+// }
+// 
+// void toggleLED2a(){
+//   if(PORTB & 0x02)
+//     PORTB &= 0xfd;
+//   else
+//     PORTB |= 0x02;
+// }
 
 
 // When the display powers up, it is configured as follows:
@@ -62,7 +62,6 @@ void toggleLED2a(){
 // RGBLCDShield constructor is called).
 
 LCD::LCD() {
-  _i2cAddr = 0;
 
   _displayfunction = LCD_4BITMODE | LCD_1LINE | LCD_5x8DOTS;
   
@@ -72,9 +71,21 @@ LCD::LCD() {
 //  _rw_pin = 6;
 //  _enable_pin = 5;
 //v1.1
-  _rs_pin = 9;
-  _rw_pin = 10;
-  _enable_pin = 11;
+//   #if HC_VERSION == HCV1_1
+//   _rs_pin = 9;
+//   _rw_pin = 10;
+//   _enable_pin = 11;
+//   _i2cAddr = 0;
+// #elif HC_VERSION == HCV1_2
+  //v1.2:
+  _rs_pin = 10;
+  _rw_pin = 11;
+  _enable_pin = 13; //this is an atmel pin
+  _i2cAddr = 2;
+  
+  
+// #endif
+  
   _data_pins[0] = 12;  // really d4
   _data_pins[1] = 13;  // really d5
   _data_pins[2] = 14;  // really d6
@@ -131,7 +142,7 @@ void LCD::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
   if (_i2cAddr != 255) {
     //_i2c.begin(_i2cAddr);
     Wire.begin();
-    _i2c.begin();
+    _i2c.begin(_i2cAddr);
 
  //   _i2c.pinMode(8, OUTPUT);
  //   _i2c.pinMode(6, OUTPUT);
@@ -142,7 +153,12 @@ void LCD::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
       _i2c.pinMode(_rw_pin, OUTPUT);
 
     _i2c.pinMode(_rs_pin, OUTPUT);
-    _i2c.pinMode(_enable_pin, OUTPUT);
+// #if HC_VERSION == HCV1_1
+//     _i2c.pinMode(_enable_pin, OUTPUT);
+// #elif HC_VERSION == HCV1_2
+//      pinMode(_enable_pin, OUTPUT);
+    DDRB |= 0x20;
+// #endif
     for (uint8_t i=0; i<4; i++) 
       _i2c.pinMode(_data_pins[i], OUTPUT);
 
@@ -169,7 +185,7 @@ void LCD::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
   delayMicroseconds(50000); 
   // Now we pull both RS and R/W low to begin commands
   _digitalWrite(_rs_pin, LOW);
-  _digitalWrite(_enable_pin, LOW);
+  setEnableLow();
   if (_rw_pin != 255) { 
     _digitalWrite(_rw_pin, LOW);
   }
@@ -341,6 +357,25 @@ inline void LCD::write(uint8_t value) {
 
 /************ low level data pushing commands **********/
 
+//TODO: make inline
+  void LCD::setEnableHigh(){
+//     #if HC_VERSION == HCV1_1
+// 	_digitalWrite(_enable_pin, HIGH); 
+//     #elif HC_VERSION == HCV1_2
+	PORTB |= 0x20;
+//     #endif   
+  }
+  
+  //TODO: make inline
+  void LCD::setEnableLow(){ 
+//     #if HC_VERSION == HCV1_1
+// 	_digitalWrite(_enable_pin, LOW); 
+//     #elif HC_VERSION == HCV1_2
+	PORTB &= 0xdf;
+//     #endif
+  }
+
+
 // little wrapper for i/o writes
 //TODO: eliminate this function
 void  LCD::_digitalWrite(uint8_t p, uint8_t d) {
@@ -393,11 +428,11 @@ void LCD::send(uint8_t value, uint8_t mode) {
 }
 
 void LCD::pulseEnable(void) {
-  _digitalWrite(_enable_pin, LOW);
+  setEnableLow();
   delayMicroseconds(1);    
-  _digitalWrite(_enable_pin, HIGH);
+  setEnableHigh();
   delayMicroseconds(1);    // enable pulse must be >450ns
-  _digitalWrite(_enable_pin, LOW);
+  setEnableLow();
   delayMicroseconds(50);   // commands need > 37us to settle
 }
 
@@ -415,18 +450,30 @@ void LCD::write4bits(uint8_t value) {
     }
 
     // make sure enable is low
-    out &= ~ _BV(_enable_pin);
+//      #if HC_VERSION == HCV1_1
+//     out &= ~ _BV(_enable_pin);
+//     #elif HC_VERSION == HCV1_2
+	setEnableLow();
+//     #endif   
 
     _i2c.writeGPIOAB(out);
     // pulse enable
     delayMicroseconds(1);
-    out |= _BV(_enable_pin);
-    _i2c.writeGPIOAB(out);
+//     #if HC_VERSION == HCV1_1
+//     out |= _BV(_enable_pin);
+//     _i2c.writeGPIOAB(out);
+//     #elif HC_VERSION == HCV1_2
+	setEnableHigh();
+//     #endif  
     delayMicroseconds(1);
-    out &= ~_BV(_enable_pin);
-    _i2c.writeGPIOAB(out);   
+    
+//     #if HC_VERSION == HCV1_1
+//     out &= ~_BV(_enable_pin);
+//     _i2c.writeGPIOAB(out);   
+//     #elif HC_VERSION == HCV1_2
+	setEnableLow();
+//     #endif  
     delayMicroseconds(50);
-    PORTB &= 0xfd;
 
 
   } else {

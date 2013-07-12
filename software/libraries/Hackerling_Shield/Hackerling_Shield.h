@@ -16,6 +16,9 @@
 
 void DelayLoop(uint16_t l);
 
+#define HCV1_1 1
+#define HCV1_2 2
+#define HC_VERSION 2
 
 #define INPUT 0
 
