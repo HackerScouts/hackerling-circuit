@@ -36,7 +36,7 @@
 */
 #include "i2c.h"  // not the wire library, can't use pull-ups
 
-#define SA0 0  // Breakout board defaults to 1, set to 0 if SA0 jumper is set
+#define SA0 1  // Breakout board defaults to 1, set to 0 if SA0 jumper is set
 #if SA0
   #define MMA8452_ADDRESS 0x1D  // SA0 is high, 0x1C if low
 #else
